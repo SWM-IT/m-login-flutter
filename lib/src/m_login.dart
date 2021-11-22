@@ -76,9 +76,10 @@ class MLogin {
     required this.clientId,
     this.loggedInMLoginUserId,
   });
-}
 
-extension Accounting on MLogin {
+  // ////////////////////////////////////////////////////////
+  // Accounting
+
   ///
   /// Start the MLogin login flow: Opens a secure browser environment where the
   /// user can enter her existing MLogin credentials - or create a new account
@@ -112,9 +113,11 @@ extension Accounting on MLogin {
   }) async {
     return runAuthentication(this, 'signup', prefix, postfix, scopes);
   }
-}
 
-extension DataManagement on MLogin {
+  // Accounting
+  // ////////////////////////////////////////////////////////
+  // DataManagement
+
   ///
   /// Opens the M-Login portal in a web browser, focused on the profile page
   /// (name, address, birthday, email, ...). In there, the user can review
@@ -129,9 +132,11 @@ extension DataManagement on MLogin {
   Future<bool> openPortalOverview() {
     return openDataPage(this, portalUriSuffix: 'profile');
   }
-}
 
-extension WalletAndPayment on MLogin {
+  // DataManagement
+  // ////////////////////////////////////////////////////////
+  // WalletAndPayment
+
   ///
   /// Opens a page in the browser where the user can grant a SEPA mandate for
   /// payments to the [payeeId] of the service, using the already entered bank
