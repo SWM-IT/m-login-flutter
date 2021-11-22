@@ -11,10 +11,10 @@ dependencies:
     sdk: flutter
 
   # Handles launching and closing secure browser contexts
-  flutter_web_auth: 0.3.1
+  flutter_web_auth: ^0.3.1
 
   # Needed to create PKCE challenges and verification codes
-  crypto: 3.0.1
+  crypto: ^3.0.1
 
 dev_dependencies:
   flutter_test:
