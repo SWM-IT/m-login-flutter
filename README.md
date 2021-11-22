@@ -160,6 +160,11 @@ Edit the `Info.plist` file in `ios/Runner` and add the following:
 
 Again, replace `<YOUR URL SCHEME>` with your actual URL scheme.
 
+## Example
+
+Check the example sub-project in `m_login_sdk_example` to see the integration and usage in action
+with a very simple UI.
+
 ## Usage
 
 See the `example` directory for a minimal implementation that uses the sdk.

@@ -1,3 +1,3 @@
-## [0.1.0] - (22th November 2021)
+## [0.1.0] - (22nd November 2021)
 
 * Initial release: flutter-native access to the M-Login systems
