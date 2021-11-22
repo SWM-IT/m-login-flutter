@@ -45,7 +45,7 @@ confusion.
 #### `crypto`
 
 Default Dart cryptography library. Needed to generate valid and secure code challenges and
-verification codes in the [PKCE][https://oauth.net/2/pkce/] flow.
+verification codes in the [PKCE](https://oauth.net/2/pkce/) flow.
 
 #### `flutter_web_auth`
 
@@ -167,8 +167,8 @@ See the `example` directory for a minimal implementation that uses the sdk.
 #### Accessing the M-Login SDK
 
 The central class to access the M-Login SDK is the `MLogin` class in `m_login.dart`. All
-functionality is offered in there. The parameters required to construct a `MLogin` object, please
-check the documentation in the code.
+functionality is offered in there. For the parameters required to construct a `MLogin` object: 
+Please check the documentation in the code.
 
 #### Configs / Tiers
 
