@@ -182,8 +182,8 @@ The MLogin system offers three environments / server tiers:
 Accordingly, to access the right environment, provide the fitting `MLoginConfig` enum value as
 parameter to the `MLogin` constructor.
 
-__NOTE__: *K* and *I2* tiers are secured with a basic auth scheme. You should have received basic
-auth access data from the M-Login team with your `clientId`, `url_scheme`, and `redirectUri`.
+> __NOTE__: *K* and *I2* tiers are secured with a basic auth scheme. You should have received basic
+> auth access data from the M-Login team with your `clientId`, `url_scheme`, and `redirectUri`.
 
 #### Debug logging
 
@@ -193,9 +193,9 @@ to `MLoginLog.logger` to receive log output from the SDK. There is also a minima
 included to use out of the box: The `MLoginTrivialLogger`, which simply prints all log output to the
 console.
 
-__NOTE__: Printing of log messages of the `debug` level should *only* be active in debug
-environments as potentially sensitive data may be included. Do *not* expose to any place that might
-be accessible to other apps.
+> __NOTE__: Printing of log messages of the `debug` level should *only* be active in debug
+> environments as potentially sensitive data may be included. Do *not* expose to any place that might
+> be accessible to other apps.
 
 #### Login
 
@@ -240,8 +240,8 @@ b) (recommended) send the user to a web-page offered by the M-Login portal to le
 data there. For that, call `openPortalOverview`. This will open a secure browser session and jump
 directly to a page where data can be changed.
 
-**NOTE**: Make sure that you've set `loggedInMLoginUserId` in the `MLogin` object! Otherwise, edge
-cases with diverging user sessions are possible! See documentation for the `MLogin` constructor.
+> __NOTE__: Make sure that you've set `loggedInMLoginUserId` in the `MLogin` object! Otherwise, edge
+> cases with diverging user sessions are possible! See documentation for the `MLogin` constructor.
 
 #### PaymentMethods
 
