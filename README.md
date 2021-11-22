@@ -54,21 +54,6 @@ recognizing when a browser session finishes while capturing the output from the 
 
 ## Integrating the SDK
 
-### For now
-
-Check out the `m_login_sdk` to a directory adjacent to your project. Add a dependency to
-your `pubspec.yml` by adding the following under `dependencies`:
-
-```yaml
-  m_login_sdk:
-    path: <relative path to the root of the m_login_sdk>
-```
-
-Please note that this requires all members of your team to have the same relative directory
-structure!
-
-### Once the M-Login SDK is on `pub`
-
 Add the M-Login SDK as dependency to your `pubspec.yml` file and run `pub get`. The easiest way is
 to open the terminal, navigate to the root directory of your project and run
 
@@ -79,7 +64,7 @@ flutter pub add m_login_sdk
 This will add a dependency in your `pubspec.yml` file that looks like this:
 
 ```yaml
-  m_login_sdk: ^0.0.1
+  m_login_sdk: ^0.1.1
 ```
 
 ## SetUp
