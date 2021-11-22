@@ -1,3 +1,7 @@
+## [0.1.2] - (22nd November 2021)
+
+* Removed extension-based structuring of `MLogin` class to allow for better mockability
+
 ## [0.1.1] - (22nd November 2021)
 
 * No changed functionality. Minor adjustments to make pub.dev happy and hand out more points
