@@ -2,7 +2,7 @@ name: m_login_sdk
 description: Flutter-native SDK to simply access the M-Login identity- and user-data system.
 repository: https://github.com/SWM-IT/m-login-flutter
 issue_tracker: https://github.com/SWM-IT/m-login-flutter/issues
-homepage: https://login.muenchen.de/
+homepage: https://login.muenchen.de
 version: 0.1.1
 
 environment:
