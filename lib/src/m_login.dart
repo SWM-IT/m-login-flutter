@@ -213,7 +213,7 @@ extension WalletAndPayment on MLogin {
   ///
   /// The [recoverableErrorPayload] should be the complete error object as
   /// received from the backend as a raw String
-  /// 
+  ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
   /// the iOS browser, or the back button on Android)
