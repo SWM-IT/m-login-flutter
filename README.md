@@ -262,8 +262,8 @@ Example flow:
 - The user is using service XX, being logged in there with the M-Login
 - She wants to buy a thing, presses 'buy now' in XX's app, the app's backend sends 'authorize' to
   the M-Login backend with the purchase details
-- Unfortunately she did not yet give a SEPA mandate for the bank account registered in the M-Login (
-  d'oh!), so the call fails
+- Unfortunately she did not yet give a SEPA mandate for the bank account registered in the M-Login 
+  (d'oh!), so the call fails
 - So, XX's backend is handed back an error object with 'recoverable' set as 'error-category'
 - XX's backend transfers that error object to the app - which in turn just feeds it into this method
 - An appropriate Portal page is shown, the user approves the mandate
