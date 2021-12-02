@@ -127,7 +127,11 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android)
+  /// the iOS browser, or the back button on Android).
+  ///
+  /// Note that this does not contain any information whether data was changed
+  /// or validated. It's safe to ignore the returned value and just assume data
+  /// was changed.
   ///
   Future<bool> openPortalOverview() {
     return openDataPage(this, portalUriSuffix: 'profile');
@@ -161,6 +165,10 @@ class MLogin {
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
   /// the iOS browser, or the back button on Android)
   ///
+  /// Note that this does not contain any information whether data was changed
+  /// or validated. It's safe to ignore the returned value and just assume data
+  /// was changed.
+  ///
   Future<bool> openGrantSepaMandatePage(String methodId, String payeeId) {
     return openDataPage(this,
         portalUriSuffix: 'grantmandate',
@@ -182,6 +190,10 @@ class MLogin {
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
   /// the iOS browser, or the back button on Android)
+  ///
+  /// Note that this does not contain any information whether data was changed
+  /// or validated. It's safe to ignore the returned value and just assume data
+  /// was changed.
   ///
   Future<bool> openPaymentMethodsOverviewPage(String payeeId) {
     return openDataPage(
