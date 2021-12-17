@@ -1,3 +1,7 @@
+## [0.1.3] - (17th December 2021)
+
+* Improved accessibility of offered M-Login buttons
+
 ## [0.1.2] - (22nd November 2021)
 
 * Removed extension-based structuring of `MLogin` class to allow for better mockability
