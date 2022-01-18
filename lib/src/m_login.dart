@@ -72,7 +72,9 @@ class MLogin {
   /// [idVerificationRedirectUri] is only used and required for the
   /// [openDriverLicenseVerification] method.
   /// Defines where the (external) driver license verification service (e.g.,
-  /// IDNow) should redirect to after a successful verification step.
+  /// IDNow) should redirect to after a successful verification step. You can
+  /// use the same redirect uri as set in [redirectUri] but it is recommended
+  /// to use a uri specific to this use case instead.
   ///
   MLogin({
     required this.config,

@@ -233,6 +233,17 @@ directly to a page where data can be changed.
 > __NOTE__: Make sure that you've set `loggedInMLoginUserId` in the `MLogin` object! Otherwise, edge
 > cases with diverging user sessions are possible! See documentation for the `MLogin` constructor.
 
+#### Driver License Verification
+
+In case your service requires your users to have a valid drivers license, you can use the offered
+`openDriverLicenseVerification` call. If your user does not yet have her drivers license verified,
+this will directly open the corresponding flow in the M-Login portal.
+For this, you MUST go through the offered web experience; setting your own verification data is not
+yet possible.
+
+> __NOTE__: Make sure that you've set `idVerificationRedirectUri` when configuring your `MLogin` 
+> object! 
+
 #### PaymentMethods
 
 Similar to the [Profile]: The user can also be sent directly to a portal page to edit her payment

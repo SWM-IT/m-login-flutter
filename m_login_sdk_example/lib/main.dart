@@ -17,15 +17,11 @@ void main() {
 class FlutterMLoginSdkSample extends StatelessWidget {
   const FlutterMLoginSdkSample({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const ExampleLauncherPage(),
+      home: ExampleLauncherPage(),
     );
   }
 }
@@ -42,6 +38,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
   String signUpResultText = '<Not yet signed up>';
   String profilePageResultText = '';
   String paymentMethodsPageResultText = '';
+  String driversLicenseResultText = '';
 
   ///
   /// Having the [MLogin] as an object with longer lifecycle is recommended but
@@ -54,6 +51,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     clientId: 'm-login-demo-app-k',
     callbackUrlScheme: 'k.de.swm.login.app',
     redirectUri: 'k.de.swm.login.app:/oauth2redirect/example',
+    idVerificationRedirectUri: 'k.de.swm.login.app:/oauth2redirect/example',
   );
 
   @override
@@ -81,6 +79,11 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
               ElevatedButton(
                 onPressed: _openProfilePage,
                 child: const Text('Profile Page'),
+              ),
+              Text(profilePageResultText),
+              ElevatedButton(
+                onPressed: _openDriversLicenseVerificationPage,
+                child: const Text('Drivers License Verification'),
               ),
               Text(profilePageResultText),
               Container(
@@ -156,6 +159,17 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     setState(() {
       paymentMethodsPageResultText =
           'Payment methods page was shown, result: $result';
+    });
+  }
+
+  _openDriversLicenseVerificationPage() async {
+    setState(() {
+      driversLicenseResultText = 'Opening Drivers License page...';
+    });
+
+    final result = await mLogin.openDriverLicenseVerification();
+    setState(() {
+      driversLicenseResultText = 'Profile was shown, result: $result';
     });
   }
 }
