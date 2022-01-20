@@ -34,6 +34,7 @@ Future<MLoginResult> runAuthentication(
     final result = await FlutterWebAuth.authenticate(
       url: uri,
       callbackUrlScheme: mLogin.callbackUrlScheme,
+      preferEphemeral: true,
     );
 
     MLoginLog.info('Web authentication completed.');

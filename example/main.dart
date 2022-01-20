@@ -85,7 +85,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                 onPressed: _openDriversLicenseVerificationPage,
                 child: const Text('Drivers License Verification'),
               ),
-              Text(profilePageResultText),
+              Text(driversLicenseResultText),
               Container(
                 color: Colors.grey,
                 padding: const EdgeInsets.all(10),
