@@ -22,6 +22,7 @@ class MLogin {
   final String redirectUri;
   final String callbackUrlScheme;
   final String clientId;
+  final String? idVerificationRedirectUri;
 
   /// [loggedInMLoginUserId] Identifies the user that is currently logged-in in
   /// the app using the SDK. Optional, but it is __strongly__ recommended to set
@@ -53,7 +54,7 @@ class MLogin {
   ///
   /// [loggedInMLoginUserId] Identifies the user that is currently logged-in in
   /// the app using the SDK. Optional, but it is __strongly__ recommended to set
-  /// this if possible.
+  /// this if possible, and keep it in sync with the logged-in user of the app.
   ///
   /// Background:
   /// ===========
@@ -68,6 +69,12 @@ class MLogin {
   ///
   /// Can (and should) be updated when the login changes.
   ///
+  /// [idVerificationRedirectUri] is only used and required for the
+  /// [openDriverLicenseVerification] method.
+  /// Defines where the (external) driver license verification service (e.g.,
+  /// IDNow) should redirect to after a successful verification step. You can
+  /// use the same redirect uri as set in [redirectUri] but it is recommended
+  /// to use a uri specific to this use case instead.
   ///
   MLogin({
     required this.config,
@@ -75,6 +82,7 @@ class MLogin {
     required this.callbackUrlScheme,
     required this.clientId,
     this.loggedInMLoginUserId,
+    this.idVerificationRedirectUri,
   });
 
   // ////////////////////////////////////////////////////////
@@ -137,6 +145,42 @@ class MLogin {
     return openDataPage(this, portalUriSuffix: 'profile');
   }
 
+  ///
+  /// Opens the M-Login portal in a secure web browser environment, focused on
+  /// the driver license page.
+  ///
+  /// Does not require previous Login. In case there is no valid login present
+  /// in the browser, the user will be prompted to log in again.
+  ///
+  /// Requires [idVerificationRedirectUri] to be set!
+  /// Throws exception if not.
+  ///
+  /// It is strongly recommended to keep [loggedInMLoginUserId] in sync with the
+  /// logged in user of the calling app to ensure that the profile page is shown
+  /// for the correct user.
+  ///
+  /// Returns [true] in case the user finishes the page using the `done` button,
+  /// [false] in any other case (e.g., the user pressed the "cancel" button in
+  /// the iOS browser, or the back button on Android). This does not infer any
+  /// data change or validation and can safely be ignored.
+  ///
+  Future<bool> openDriverLicenseVerification() {
+    final idRedirectUri = idVerificationRedirectUri;
+    if (idRedirectUri == null) {
+      throw Exception('"idVerificationRedirectUri" MUST be set when calling '
+          'openDriverLicenseVerification!');
+    }
+
+    return openDataPage(
+      this,
+      portalUriSuffix: 'driver-licence-direct-verification',
+      extraParams: {
+        'id_verification_client_id': clientId,
+        'id_verification_redirect_uri': idRedirectUri,
+      },
+    );
+  }
+
   // DataManagement
   // ////////////////////////////////////////////////////////
   // WalletAndPayment
@@ -170,9 +214,11 @@ class MLogin {
   /// was changed.
   ///
   Future<bool> openGrantSepaMandatePage(String methodId, String payeeId) {
-    return openDataPage(this,
-        portalUriSuffix: 'grantmandate',
-        extraParams: {'method_id': methodId, 'payee_id': payeeId});
+    return openDataPage(
+      this,
+      portalUriSuffix: 'grantmandate',
+      extraParams: {'method_id': methodId, 'payee_id': payeeId},
+    );
   }
 
   ///

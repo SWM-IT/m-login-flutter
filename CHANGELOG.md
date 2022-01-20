@@ -1,3 +1,8 @@
+## [0.2.0] - (18th January 2022)
+
+* Added `openDriverLicenseVerification` call to `MLogin` to jump directly to the driver license verification flow in the M-Login portal
+* Added optional `idVerificationRedirectUri` configuration parameter to `MLogin` to support `openDriverLicenseVerification`
+
 ## [0.1.3] - (17th December 2021)
 
 * Improved accessibility of offered M-Login buttons
