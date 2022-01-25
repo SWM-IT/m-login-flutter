@@ -1,3 +1,7 @@
+## [0.2.1] - (25th January 2022)
+
+* Bugfix for MLogin Button -> made padding parameter functional
+
 ## [0.2.0] - (18th January 2022)
 
 * Added `openDriverLicenseVerification` call to `MLogin` to jump directly to the driver license verification flow in the M-Login portal
