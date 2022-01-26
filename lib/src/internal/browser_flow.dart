@@ -7,7 +7,7 @@ import 'package:flutter/services.dart';
 /// Static access only so far.
 ///
 class BrowserFlow {
-  static const MethodChannel _channel = MethodChannel("m_login_sdk");
+  static const MethodChannel _channel = MethodChannel('m_login_sdk');
 
   ///
   /// Open the M-Login portal with the given [url] in a secure browser
