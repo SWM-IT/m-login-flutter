@@ -1,5 +1,5 @@
-import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:m_login_sdk/m_login_sdk.dart';
+import 'package:m_login_sdk/src/internal/browser_flow.dart';
 
 Future<bool> openDataPage(
   MLogin mLogin, {
@@ -27,7 +27,7 @@ Future<bool> openDataPage(
   final uri = '$path?$queryParamsString';
 
   try {
-    final result = await FlutterWebAuth.authenticate(
+    final result = await BrowserFlow.authenticate(
       url: uri,
       callbackUrlScheme: mLogin.callbackUrlScheme,
     );

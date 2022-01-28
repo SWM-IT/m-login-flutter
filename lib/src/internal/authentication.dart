@@ -45,7 +45,7 @@ Future<MLoginResult> runAuthentication(
       verifier: codeChallenge.verifier,
     );
   } on PlatformException catch (e) {
-    if (e.code.toLowerCase() == 'cancelled') {
+    if (e.code.toLowerCase() == 'canceled') {
       MLoginLog.info('Web authentication was canceled by the user');
       return MLoginResult.error(MLoginError.canceled);
     }
