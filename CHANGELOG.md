@@ -1,3 +1,10 @@
+## [0.3.0] - (28th January 2022)
+
+* Removed dependency on on `flutter_web_auth`
+* Fixed issue with task handling on Android: Now, the M-Login flow runs in the same task. No more browser pollution in the task switcher, no more issues when logging in twice
+* Fixed issue on Android where the task would fail when there is more than one app including the M-Login-SDK on the same phone
+* Simplified integration on Android: Fewer additions to the Manifest required
+
 ## [0.2.1] - (25th January 2022)
 
 * Bugfix for MLogin Button -> made padding parameter functional

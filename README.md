@@ -47,11 +47,6 @@ confusion.
 Default Dart cryptography library. Needed to generate valid and secure code challenges and
 verification codes in the [PKCE](https://oauth.net/2/pkce/) flow.
 
-#### `flutter_web_auth`
-
-Support plugin that handles opening of secure browser environments on Android and iOS as well as
-recognizing when a browser session finishes while capturing the output from the web session.
-
 ## Integrating the SDK
 
 Add the M-Login SDK as dependency to your `pubspec.yml` file and run `pub get`. The easiest way is
@@ -64,7 +59,7 @@ flutter pub add m_login_sdk
 This will add a dependency in your `pubspec.yml` file that looks like this:
 
 ```yaml
-  m_login_sdk: ^0.1.3
+  m_login_sdk: ^0.3.0
 ```
 
 ## SetUp
@@ -83,23 +78,25 @@ it is set to something >= 21 (Flutter sets this to 16 by default).
 ##### Register for custom url scheme
 
 In the `android/app/src/main` folder, open the `AndroidManifest.xml` file, and add the following
-inside of the `<application> [IN HERE] </application>` entity:
+inside of you main activity `<activity [..]> [IN HERE] </activity>` entity, just below the 
+`<intent-filter ..>..</intent-filter>` that is already in there.
 
 ```xml
-
-<activity android:name="com.linusu.flutter_web_auth.CallbackActivity">
-    <intent-filter android:label="flutter_web_auth">
+    <intent-filter android:label="m_login_sdk">
         <action android:name="android.intent.action.VIEW" />
         <category android:name="android.intent.category.DEFAULT" />
         <category android:name="android.intent.category.BROWSABLE" />
         <data android:scheme="<YOUR URL SCHEME>" />
     </intent-filter>
-</activity>
 ```
 
 Make sure to replace `<YOUR URL SCHEME>` with your actual URL scheme. In case you are accessing
 different M-Login tiers (`K`, `P`) for different build versions, add the according changes in the
 fitting flavors, e.g. `android/app/src/debug`.
+
+In case your app works as a hybrid with Flutter just embedded, make sure to add the intent filter
+to the activity where you run Flutter and trigger the login. If you do that in multiple activities,
+... please talk to us. Not really supported right now :/
 
 ##### Targeting API versions >= 30
 
