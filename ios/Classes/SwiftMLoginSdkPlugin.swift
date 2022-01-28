@@ -14,8 +14,11 @@ public class SwiftMLoginSdkPlugin: NSObject, FlutterPlugin {
         if call.method == "authenticate" {
             let url = URL(string: (call.arguments as! Dictionary<String, AnyObject>)["url"] as! String)!
             let callbackURLScheme = (call.arguments as! Dictionary<String, AnyObject>)["callbackUrlScheme"] as! String
-            
-            var sessionToKeepAlive: Any? = nil // if we do not keep the session alive, it will get closed immediately while showing the dialog
+
+            // The session MUST be stored by us somewhere. If not, it will be ARC released immediately
+            // after we call `start` on it.
+            // Then released once the sessions concludes.
+            var sessionToKeepAlive: Any? = nil
             
             let completionHandler = {  (url: URL?, err: Error?) in
                 sessionToKeepAlive = nil
