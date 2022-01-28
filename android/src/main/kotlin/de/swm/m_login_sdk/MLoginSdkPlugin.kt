@@ -24,7 +24,7 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
     // Receive a callback when the Flutter activity is launched with a new intent. This is the case
     // when returning from the Custom Tabs browser session.
     PluginRegistry.NewIntentListener,
-    // React on lifecycle events. Especially: Returning from cancelled session
+    // React on lifecycle events. Especially: Returning from canceled session
     Application.ActivityLifecycleCallbacks {
 
     private lateinit var channel: MethodChannel
@@ -48,7 +48,6 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
         val intent = CustomTabsIntent.Builder().build()
         val keepAliveIntent = Intent(activity, KeepAliveService::class.java)
 
-        intent.intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
         intent.intent.putExtra("android.support.customtabs.extra.KEEP_ALIVE", keepAliveIntent)
 
         intent.launchUrl(activity, url)
@@ -63,10 +62,10 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
     }
 
     private fun onReturnedFromBrowser() {
-        // Mark all still not finished calls as CANCELLED
+        // Mark all still not finished calls as CANCELED
         // Successful attempts were removed before reaching this method in [onRedirectionReceived]
         runningAuthenticationCalls.values.forEach {
-            it.error("CANCELLED", "User canceled", null)
+            it.error("CANCELED", "User canceled", null)
         }
         runningAuthenticationCalls.clear()
     }
