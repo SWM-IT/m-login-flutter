@@ -14,7 +14,7 @@ class BrowserFlow {
   /// environment.
   ///
   /// On completion, the portal will redirect to this app using a URI with the
-  /// prvided [callbackUrlScheme]
+  /// provided [callbackUrlScheme]
   ///
   /// [callbackUrlScheme] should be a string specifying the scheme of the url
   /// that the page will redirect to upon successful authentication.
