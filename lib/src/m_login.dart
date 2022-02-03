@@ -18,10 +18,35 @@ import 'package:m_login_sdk/src/m_login_result.dart';
 /// See [MLoginLog] for debugging purposes.
 ///
 class MLogin {
+  /// Defines which MLogin tier is to be accessed (i2, k, p)
   final MLoginConfig config;
+
+  /// Defines the full url used when capturing redirects.
+  /// __MUST__ match the [clientId], login attempts will fail otherwise.
+  ///
+  /// This URL scheme __MUST__ also be defined for Android in the
+  /// `AndroidManifest.xml` file. See the README on how to do that.
   final String redirectUri;
+
+  /// Necessary to catch when the web process finishes in iOS.
+  /// __MUST__ match the [redirectUri]
+  ///
+  /// Note that this MUST be ONLY a scheme, not a URL.
+  /// So: Should look like `my.scheme`, not `my.scheme:/home`
   final String callbackUrlScheme;
+
+  /// Identifies the app using this MLoginSDK. Ask the MLogin team for a valid clientId.
+  /// __MUST__ match the [redirectUri], access attempts will fail otherwise.
   final String clientId;
+
+  /// This is only used and required for the [openDriverLicenseVerification] method.
+  /// Defines where the (external) driver license verification service (e.g.,
+  /// IDNow) should redirect to after a successful verification step. You can
+  /// use the same redirect uri as set in [redirectUri] but it is recommended
+  /// to use a uri specific to this use case instead.
+  ///
+  /// Expected to be a full Uri, starting with your custom scheme.
+  /// Example: `my.custom.scheme:/redirect/id_verify`
   final String? idVerificationRedirectUri;
 
   /// [loggedInMLoginUserId] Identifies the user that is currently logged-in in
@@ -40,7 +65,7 @@ class MLogin {
   ///
   /// [config] Defines which MLogin tier is to be accessed (i2, k, p)
   ///
-  /// [redirectUri] Defines the url scheme used for this app.
+  /// [redirectUri] Defines the full url used for this app.
   /// __MUST__ match the [clientId], login attempts will fail otherwise.
   /// This URL scheme __MUST__ also be defined for Android in the
   /// `AndroidManifest.xml` file. See the README on how to do that.

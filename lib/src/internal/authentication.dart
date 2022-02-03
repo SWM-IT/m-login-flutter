@@ -1,7 +1,7 @@
 import 'package:flutter/services.dart';
-import 'package:flutter_web_auth/flutter_web_auth.dart';
 import 'package:m_login_sdk/m_login_sdk.dart';
 import 'package:m_login_sdk/src/internal/auth_result.dart';
+import 'package:m_login_sdk/src/internal/browser_flow.dart';
 import 'package:m_login_sdk/src/internal/pkce.dart';
 import 'package:m_login_sdk/src/internal/util.dart';
 
@@ -31,10 +31,9 @@ Future<MLoginResult> runAuthentication(
   MLoginLog.debug('.. with URI: $uri');
 
   try {
-    final result = await FlutterWebAuth.authenticate(
+    final result = await BrowserFlow.authenticate(
       url: uri,
       callbackUrlScheme: mLogin.callbackUrlScheme,
-      preferEphemeral: true,
     );
 
     MLoginLog.info('Web authentication completed.');
