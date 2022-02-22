@@ -14,6 +14,7 @@ public class SwiftMLoginSdkPlugin: NSObject, FlutterPlugin {
         if call.method == "authenticate" {
             let url = URL(string: (call.arguments as! Dictionary<String, AnyObject>)["url"] as! String)!
             let callbackURLScheme = (call.arguments as! Dictionary<String, AnyObject>)["callbackUrlScheme"] as! String
+            let ephemeral = (call.arguments as! Dictionary<String, AnyObject>)["ephemeral"] as? Bool
 
             // The session MUST be stored by us somewhere. If not, it will be ARC released immediately
             // after we call `start` on it.
@@ -36,11 +37,11 @@ public class SwiftMLoginSdkPlugin: NSObject, FlutterPlugin {
                 
                 if #available(iOS 13, *) {
                     guard let provider = UIApplication.shared.delegate?.window??.rootViewController as? FlutterViewController else {
-                        result(FlutterError(code: "FAILED", message: "Failed to aquire root FlutterViewController" , details: nil))
+                        result(FlutterError(code: "FAILED", message: "Failed to acquire root FlutterViewController" , details: nil))
                         return
                     }
                     
-                    session.prefersEphemeralWebBrowserSession = true
+                    session.prefersEphemeralWebBrowserSession = ephemeral ?? false
                     session.presentationContextProvider = provider
                 }
                 

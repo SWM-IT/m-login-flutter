@@ -59,7 +59,7 @@ flutter pub add m_login_sdk
 This will add a dependency in your `pubspec.yml` file that looks like this:
 
 ```yaml
-  m_login_sdk: ^0.3.0
+  m_login_sdk: ^0.4.0
 ```
 
 ## SetUp
@@ -78,25 +78,26 @@ it is set to something >= 21 (Flutter sets this to 16 by default).
 ##### Register for custom url scheme
 
 In the `android/app/src/main` folder, open the `AndroidManifest.xml` file, and add the following
-inside of you main activity `<activity [..]> [IN HERE] </activity>` entity, just below the 
+inside of you main activity `<activity [..]> [IN HERE] </activity>` entity, just below the
 `<intent-filter ..>..</intent-filter>` that is already in there.
 
 ```xml
-    <intent-filter android:label="m_login_sdk">
-        <action android:name="android.intent.action.VIEW" />
-        <category android:name="android.intent.category.DEFAULT" />
-        <category android:name="android.intent.category.BROWSABLE" />
-        <data android:scheme="<YOUR URL SCHEME>" />
-    </intent-filter>
+
+<intent-filter android:label="m_login_sdk">
+    <action android:name="android.intent.action.VIEW" />
+    <category android:name="android.intent.category.DEFAULT" />
+    <category android:name="android.intent.category.BROWSABLE" />
+    <data android:scheme="<YOUR URL SCHEME>" />
+</intent-filter>
 ```
 
 Make sure to replace `<YOUR URL SCHEME>` with your actual URL scheme. In case you are accessing
 different M-Login tiers (`K`, `P`) for different build versions, add the according changes in the
 fitting flavors, e.g. `android/app/src/debug`.
 
-In case your app works as a hybrid with Flutter just embedded, make sure to add the intent filter
-to the activity where you run Flutter and trigger the login. If you do that in multiple activities,
-... please talk to us. Not really supported right now :/
+In case your app works as a hybrid with Flutter just embedded, make sure to add the intent filter to
+the activity where you run Flutter and trigger the login. If you do that in multiple activities, ...
+please talk to us. Not really supported right now :/
 
 ##### Targeting API versions >= 30
 
@@ -154,7 +155,7 @@ See the `example` directory for a minimal implementation that uses the sdk.
 #### Accessing the M-Login SDK
 
 The central class to access the M-Login SDK is the `MLogin` class in `m_login.dart`. All
-functionality is offered in there. For the parameters required to construct a `MLogin` object: 
+functionality is offered in there. For the parameters required to construct a `MLogin` object:
 Please check the documentation in the code.
 
 #### Configs / Tiers
@@ -183,6 +184,18 @@ console.
 > __NOTE__: Printing of log messages of the `debug` level should *only* be active in debug
 > environments as potentially sensitive data may be included. Do *not* expose to any place that might
 > be accessible to other apps.
+
+#### Ephemeral browser sessions
+
+The offered API provides a parameter `ephemeral` with all calls. This defines whether an "ephemeral"
+browser session (a new session without access to stored cookies) should be opened or not.
+
+Ephemeral sessions have the advantage on iOS that the user does not have to confirm access before
+the browser is opened - but then the user has to login again!
+
+It is recommended to *not* use ephemeral sessions, which is the default if the parameter is not set.
+
+Ephemeral sessions are currently not supported on Android.
 
 #### Login
 
@@ -234,12 +247,11 @@ directly to a page where data can be changed.
 
 In case your service requires your users to have a valid drivers license, you can use the offered
 `openDriverLicenseVerification` call. If your user does not yet have her drivers license verified,
-this will directly open the corresponding flow in the M-Login portal.
-For this, you MUST go through the offered web experience; setting your own verification data is not
-yet possible.
+this will directly open the corresponding flow in the M-Login portal. For this, you MUST go through
+the offered web experience; setting your own verification data is not yet possible.
 
-> __NOTE__: Make sure that you've set `idVerificationRedirectUri` when configuring your `MLogin` 
-> object! 
+> __NOTE__: Make sure that you've set `idVerificationRedirectUri` when configuring your `MLogin`
+> object!
 
 #### PaymentMethods
 
@@ -260,7 +272,7 @@ Example flow:
 - The user is using service XX, being logged in there with the M-Login
 - She wants to buy a thing, presses 'buy now' in XX's app, the app's backend sends 'authorize' to
   the M-Login backend with the purchase details
-- Unfortunately she did not yet give a SEPA mandate for the bank account registered in the M-Login 
+- Unfortunately she did not yet give a SEPA mandate for the bank account registered in the M-Login
   (d'oh!), so the call fails
 - So, XX's backend is handed back an error object with 'recoverable' set as 'error-category'
 - XX's backend transfers that error object to the app - which in turn just feeds it into this method

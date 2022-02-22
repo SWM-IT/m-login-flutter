@@ -34,7 +34,17 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
     private var activityBinding: ActivityPluginBinding? = null
     private var launchedBrowser = false
 
+    // region $MethodCallHandler
 
+    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+        if (call.method == "authenticate") {
+            authenticate(call, result)
+        } else {
+            result.notImplemented()
+        }
+    }
+
+    // endregion
     // region $Actual Logic
 
     private fun authenticate(call: MethodCall, result: Result) {
@@ -42,6 +52,9 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
 
         val url = Uri.parse(call.argument<String>("url")!!)
         val callbackUrlScheme = call.argument<String>("callbackUrlScheme")!!
+
+        // TODO: ephemeral is not yet supported by Android's custom tabs. Re-check some time later.
+        // val ephemeral = call.argument<Boolean>("ephemeral") ?: false
 
         runningAuthenticationCalls[callbackUrlScheme] = result
 
@@ -68,17 +81,6 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
             it.error("CANCELED", "User canceled", null)
         }
         runningAuthenticationCalls.clear()
-    }
-
-    // endregion
-    // region $MethodCallHandler
-
-    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-        if (call.method == "authenticate") {
-            authenticate(call, result)
-        } else {
-            result.notImplemented()
-        }
     }
 
     // endregion

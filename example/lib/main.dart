@@ -40,6 +40,8 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
   String paymentMethodsPageResultText = '';
   String driversLicenseResultText = '';
 
+  bool ephemeral = false;
+
   ///
   /// Having the [MLogin] as an object with longer lifecycle is recommended but
   /// not required. It's also possible to create a new [MLogin] object on demand
@@ -66,6 +68,19 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
+              Row(
+                children: [
+                  const Text('Ephemeral: '),
+                  Switch(
+                    value: ephemeral,
+                    onChanged: (value) {
+                      setState(() {
+                        ephemeral = value;
+                      });
+                    },
+                  ),
+                ],
+              ),
               MLoginButton(
                 text: 'Mit M-Login anmelden',
                 onPressed: _startLogin,
@@ -106,7 +121,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     setState(() {
       loginResultText = 'Logging in...';
     });
-    final loginResult = await mLogin.login();
+    final loginResult = await mLogin.login(ephemeral: ephemeral);
     setState(() {
       loginResult.process(
         (authCode, verifier) {
@@ -124,7 +139,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     setState(() {
       signUpResultText = 'Signing up...';
     });
-    final loginResult = await mLogin.register();
+    final loginResult = await mLogin.register(ephemeral: ephemeral);
     setState(() {
       loginResult.process(
         (authCode, verifier) {
@@ -143,7 +158,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
       profilePageResultText = 'Opening profile page...';
     });
 
-    final result = await mLogin.openPortalOverview();
+    final result = await mLogin.openPortalOverview(ephemeral: ephemeral);
     setState(() {
       profilePageResultText = 'Profile was shown, result: $result';
     });
@@ -154,8 +169,10 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
       paymentMethodsPageResultText = 'Opening payment methods page...';
     });
 
-    final result =
-        await mLogin.openPaymentMethodsOverviewPage('m-login-demo-payee-k');
+    final result = await mLogin.openPaymentMethodsOverviewPage(
+      'm-login-demo-payee-k',
+      ephemeral: ephemeral,
+    );
     setState(() {
       paymentMethodsPageResultText =
           'Payment methods page was shown, result: $result';
@@ -167,7 +184,9 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
       driversLicenseResultText = 'Opening Drivers License page...';
     });
 
-    final result = await mLogin.openDriverLicenseVerification();
+    final result = await mLogin.openDriverLicenseVerification(
+      ephemeral: ephemeral,
+    );
     setState(() {
       driversLicenseResultText = 'Profile was shown, result: $result';
     });

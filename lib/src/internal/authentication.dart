@@ -6,12 +6,13 @@ import 'package:m_login_sdk/src/internal/pkce.dart';
 import 'package:m_login_sdk/src/internal/util.dart';
 
 Future<MLoginResult> runAuthentication(
-  MLogin mLogin,
+  MLogin mLogin, {
   String? loginAction,
-  String prefix,
-  String postfix,
-  String scopes,
-) async {
+  required String prefix,
+  required String postfix,
+  required String scopes,
+  required bool ephemeral,
+}) async {
   String state =
       '$prefix${makeSecureRandomString(mLogin.secureRandom, 16)}$postfix';
   PkceCodeChallenge codeChallenge =
@@ -34,6 +35,7 @@ Future<MLoginResult> runAuthentication(
     final result = await BrowserFlow.authenticate(
       url: uri,
       callbackUrlScheme: mLogin.callbackUrlScheme,
+      ephemeral: ephemeral,
     );
 
     MLoginLog.info('Web authentication completed.');
