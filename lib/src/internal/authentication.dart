@@ -47,12 +47,17 @@ Future<MLoginResult> runAuthentication(
       verifier: codeChallenge.verifier,
     );
   } on PlatformException catch (e) {
-    if (e.code.toLowerCase() == 'canceled') {
-      MLoginLog.info('Web authentication was canceled by the user');
-      return MLoginResult.error(MLoginError.canceled);
+    switch (e.code.toLowerCase()) {
+      case 'canceled':
+        MLoginLog.info('Web authentication was canceled by the user');
+        return MLoginResult.error(MLoginError.canceled);
+      case 'no_browser_installed':
+        MLoginLog.info('Web authentication failed: No browser installed.');
+        return MLoginResult.error(MLoginError.noBrowserInstalled);
+      default:
+        MLoginLog.error('Failed with unknown PlatformException: $e');
+        return MLoginResult.error(MLoginError.unknown);
     }
-    MLoginLog.error('Failed with unknown PlatformException: $e');
-    return MLoginResult.error(MLoginError.unknown);
   } on Exception catch (e) {
     MLoginLog.error('Failed with unexpected Exception: $e');
     return MLoginResult.error(MLoginError.unknown);

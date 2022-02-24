@@ -2,9 +2,11 @@ package de.swm.m_login_sdk
 
 import android.app.Activity
 import android.app.Application
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.browser.customtabs.CustomTabsIntent
 import io.flutter.embedding.android.FlutterActivity
@@ -63,7 +65,18 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
 
         intent.intent.putExtra("android.support.customtabs.extra.KEEP_ALIVE", keepAliveIntent)
 
-        intent.launchUrl(activity, url)
+        try {
+            intent.launchUrl(activity, url)
+        } catch (e: ActivityNotFoundException) {
+            runningAuthenticationCalls.remove(callbackUrlScheme)
+            Toast.makeText(
+                activity,
+                R.string.toast_no_browser_installed,
+                Toast.LENGTH_SHORT
+            ).show()
+            result.error("NO_BROWSER_INSTALLED", "no browser installed", null)
+            return
+        }
 
         launchedBrowser = true
     }
