@@ -1,7 +1,7 @@
 ## [0.4.0] - (22nd January 2022)
 
-* Added optional "ephemeral" parameter to specifiy whether ephemeral sessions (previous standard!) should be used or not
-* NOTE: Default behaviour was changed to `ephemeral = false`!
+* Added optional "ephemeral" parameter to specifiy whether ephemeral sessions (previous standard!) should be used or not. **NOTE**: Default behaviour was changed to `ephemeral = false`!
+* Fixed issue where Login attempts would appear as "canceled" on Firefox
 
 ## [0.3.0] - (28th January 2022)
 
