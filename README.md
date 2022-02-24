@@ -75,6 +75,30 @@ First, make sure that you've set the right min SDK to >=21. For that, open the `
 in `android.app`, locate the line `minSdkVersion` (probably in `defaultConfig`) and make sure that
 it is set to something >= 21 (Flutter sets this to 16 by default).
 
+##### Make sure your Main Activity runs as `singleTask`
+
+In the `android/app/src/main` folder, open the `AndroidManifest.xml` file, and find the activity
+that will be used to trigger MLogin functionality; in case of usual Flutter applications, this will
+be called `MainActivity`. In the XML definition of that activity, make sure that it contains the 
+attribute `android:launchMode="singleTask"`. In total it should look similar to this:
+
+```
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="<your package>">
+   <application [...]>
+        <activity
+            android:name=".MainActivity"
+            android:launchMode="singleTask"
+            [...]>
+
+        </activity>
+        [...]
+    </application>
+</manifest>
+```
+
+This is necessary to ensure that the login flow works correctly with Firefox, and other 3rd party
+browsers. Can be skipped if you can be sure that users will *only* work with Chrome. 
+
 ##### Register for custom url scheme
 
 In the `android/app/src/main` folder, open the `AndroidManifest.xml` file, and add the following
