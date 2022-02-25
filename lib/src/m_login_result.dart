@@ -65,7 +65,7 @@ enum MLoginError {
   /// Only to be expected (as a rare edge case) on Android phones. Indicates
   /// that there was no suitable browser found to run a M-Login session.
   ///
-  /// If this error occurs, the SDK has laready shown an error toast to the
+  /// If this error occurs, the SDK has already shown an error toast to the
   /// user, so no immediate need to process this.
   noBrowserInstalled,
 
