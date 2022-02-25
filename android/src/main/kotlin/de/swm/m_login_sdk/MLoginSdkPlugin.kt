@@ -2,9 +2,11 @@ package de.swm.m_login_sdk
 
 import android.app.Activity
 import android.app.Application
+import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.browser.customtabs.CustomTabsIntent
 import io.flutter.embedding.android.FlutterActivity
@@ -34,7 +36,17 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
     private var activityBinding: ActivityPluginBinding? = null
     private var launchedBrowser = false
 
+    // region $MethodCallHandler
 
+    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+        if (call.method == "authenticate") {
+            authenticate(call, result)
+        } else {
+            result.notImplemented()
+        }
+    }
+
+    // endregion
     // region $Actual Logic
 
     private fun authenticate(call: MethodCall, result: Result) {
@@ -43,6 +55,9 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
         val url = Uri.parse(call.argument<String>("url")!!)
         val callbackUrlScheme = call.argument<String>("callbackUrlScheme")!!
 
+        // TODO: ephemeral is not yet supported by Android's custom tabs. Re-check some time later.
+        // val ephemeral = call.argument<Boolean>("ephemeral") ?: false
+
         runningAuthenticationCalls[callbackUrlScheme] = result
 
         val intent = CustomTabsIntent.Builder().build()
@@ -50,7 +65,18 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
 
         intent.intent.putExtra("android.support.customtabs.extra.KEEP_ALIVE", keepAliveIntent)
 
-        intent.launchUrl(activity, url)
+        try {
+            intent.launchUrl(activity, url)
+        } catch (e: ActivityNotFoundException) {
+            runningAuthenticationCalls.remove(callbackUrlScheme)
+            Toast.makeText(
+                activity,
+                R.string.toast_no_browser_installed,
+                Toast.LENGTH_SHORT
+            ).show()
+            result.error("NO_BROWSER_INSTALLED", "no browser installed", null)
+            return
+        }
 
         launchedBrowser = true
     }
@@ -68,17 +94,6 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
             it.error("CANCELED", "User canceled", null)
         }
         runningAuthenticationCalls.clear()
-    }
-
-    // endregion
-    // region $MethodCallHandler
-
-    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
-        if (call.method == "authenticate") {
-            authenticate(call, result)
-        } else {
-            result.notImplemented()
-        }
     }
 
     // endregion

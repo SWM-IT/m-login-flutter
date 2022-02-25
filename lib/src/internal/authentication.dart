@@ -6,12 +6,13 @@ import 'package:m_login_sdk/src/internal/pkce.dart';
 import 'package:m_login_sdk/src/internal/util.dart';
 
 Future<MLoginResult> runAuthentication(
-  MLogin mLogin,
+  MLogin mLogin, {
   String? loginAction,
-  String prefix,
-  String postfix,
-  String scopes,
-) async {
+  required String prefix,
+  required String postfix,
+  required String scopes,
+  required bool ephemeral,
+}) async {
   String state =
       '$prefix${makeSecureRandomString(mLogin.secureRandom, 16)}$postfix';
   PkceCodeChallenge codeChallenge =
@@ -34,6 +35,7 @@ Future<MLoginResult> runAuthentication(
     final result = await BrowserFlow.authenticate(
       url: uri,
       callbackUrlScheme: mLogin.callbackUrlScheme,
+      ephemeral: ephemeral,
     );
 
     MLoginLog.info('Web authentication completed.');
@@ -45,12 +47,17 @@ Future<MLoginResult> runAuthentication(
       verifier: codeChallenge.verifier,
     );
   } on PlatformException catch (e) {
-    if (e.code.toLowerCase() == 'canceled') {
-      MLoginLog.info('Web authentication was canceled by the user');
-      return MLoginResult.error(MLoginError.canceled);
+    switch (e.code.toLowerCase()) {
+      case 'canceled':
+        MLoginLog.info('Web authentication was canceled by the user');
+        return MLoginResult.error(MLoginError.canceled);
+      case 'no_browser_installed':
+        MLoginLog.info('Web authentication failed: No browser installed.');
+        return MLoginResult.error(MLoginError.noBrowserInstalled);
+      default:
+        MLoginLog.error('Failed with unknown PlatformException: $e');
+        return MLoginResult.error(MLoginError.unknown);
     }
-    MLoginLog.error('Failed with unknown PlatformException: $e');
-    return MLoginResult.error(MLoginError.unknown);
   } on Exception catch (e) {
     MLoginLog.error('Failed with unexpected Exception: $e');
     return MLoginResult.error(MLoginError.unknown);

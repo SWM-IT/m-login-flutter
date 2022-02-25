@@ -5,6 +5,7 @@ Future<bool> openDataPage(
   MLogin mLogin, {
   required String portalUriSuffix,
   Map<String, String> extraParams = const {},
+  required bool ephemeral,
 }) async {
   final path = '${mLogin.config.getHost()}/portal/mobilesdk/$portalUriSuffix';
 
@@ -30,6 +31,7 @@ Future<bool> openDataPage(
     final result = await BrowserFlow.authenticate(
       url: uri,
       callbackUrlScheme: mLogin.callbackUrlScheme,
+      ephemeral: ephemeral,
     );
     final receivedQueryParams = Uri.tryParse(result)?.queryParameters ?? {};
     return receivedQueryParams['success'] == 'true';

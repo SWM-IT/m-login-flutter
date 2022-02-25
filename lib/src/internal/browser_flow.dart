@@ -19,11 +19,29 @@ class BrowserFlow {
   /// [callbackUrlScheme] should be a string specifying the scheme of the url
   /// that the page will redirect to upon successful authentication.
   ///
-  static Future<String> authenticate(
-      {required String url, required String callbackUrlScheme}) async {
-    return await _channel.invokeMethod('authenticate', <String, dynamic>{
-      'url': url,
-      'callbackUrlScheme': callbackUrlScheme,
-    }) as String;
+  /// [ephemeral] defines whether an "ephemeral" browser session (a new session
+  /// without access to stored cookies) should be opened or not.
+  ///
+  /// Ephemeral sessions have the advantage on iOS that the user does not have
+  /// to confirm access before the browser is opened - but then the user has
+  /// to login again!
+  ///
+  /// It is recommended to *not* use ephemeral sessions.
+  ///
+  /// Native access! May throw `PlatformException`s
+  ///
+  static Future<String> authenticate({
+    required String url,
+    required String callbackUrlScheme,
+    required bool ephemeral,
+  }) async {
+    return await _channel.invokeMethod(
+      'authenticate',
+      <String, dynamic>{
+        'url': url,
+        'callbackUrlScheme': callbackUrlScheme,
+        'ephemeral': ephemeral,
+      },
+    ) as String;
   }
 }

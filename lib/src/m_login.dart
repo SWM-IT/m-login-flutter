@@ -126,8 +126,16 @@ class MLogin {
     String prefix = '',
     String postfix = '',
     String scopes = '',
+    bool ephemeral = false,
   }) async {
-    return runAuthentication(this, null, prefix, postfix, scopes);
+    return runAuthentication(
+      this,
+      loginAction: null,
+      prefix: prefix,
+      postfix: postfix,
+      scopes: scopes,
+      ephemeral: ephemeral,
+    );
   }
 
   ///
@@ -143,8 +151,16 @@ class MLogin {
     String prefix = '',
     String postfix = '',
     String scopes = '',
+    bool ephemeral = false,
   }) async {
-    return runAuthentication(this, 'signup', prefix, postfix, scopes);
+    return runAuthentication(
+      this,
+      loginAction: 'signup',
+      prefix: prefix,
+      postfix: postfix,
+      scopes: scopes,
+      ephemeral: ephemeral,
+    );
   }
 
   // Accounting
@@ -166,8 +182,8 @@ class MLogin {
   /// or validated. It's safe to ignore the returned value and just assume data
   /// was changed.
   ///
-  Future<bool> openPortalOverview() {
-    return openDataPage(this, portalUriSuffix: 'profile');
+  Future<bool> openPortalOverview({bool ephemeral = false}) {
+    return openDataPage(this, portalUriSuffix: 'profile', ephemeral: ephemeral);
   }
 
   ///
@@ -189,7 +205,7 @@ class MLogin {
   /// the iOS browser, or the back button on Android). This does not infer any
   /// data change or validation and can safely be ignored.
   ///
-  Future<bool> openDriverLicenseVerification() {
+  Future<bool> openDriverLicenseVerification({bool ephemeral = false}) {
     final idRedirectUri = idVerificationRedirectUri;
     if (idRedirectUri == null) {
       throw Exception('"idVerificationRedirectUri" MUST be set when calling '
@@ -203,6 +219,7 @@ class MLogin {
         'id_verification_client_id': clientId,
         'id_verification_redirect_uri': idRedirectUri,
       },
+      ephemeral: ephemeral,
     );
   }
 
@@ -238,11 +255,16 @@ class MLogin {
   /// or validated. It's safe to ignore the returned value and just assume data
   /// was changed.
   ///
-  Future<bool> openGrantSepaMandatePage(String methodId, String payeeId) {
+  Future<bool> openGrantSepaMandatePage(
+    String methodId,
+    String payeeId, {
+    bool ephemeral = false,
+  }) {
     return openDataPage(
       this,
       portalUriSuffix: 'grantmandate',
       extraParams: {'method_id': methodId, 'payee_id': payeeId},
+      ephemeral: ephemeral,
     );
   }
 
@@ -266,11 +288,15 @@ class MLogin {
   /// or validated. It's safe to ignore the returned value and just assume data
   /// was changed.
   ///
-  Future<bool> openPaymentMethodsOverviewPage(String payeeId) {
+  Future<bool> openPaymentMethodsOverviewPage(
+    String payeeId, {
+    bool ephemeral = false,
+  }) {
     return openDataPage(
       this,
       portalUriSuffix: 'paymentmethods',
       extraParams: {'payee_id': payeeId},
+      ephemeral: ephemeral,
     );
   }
 
@@ -307,9 +333,11 @@ class MLogin {
   /// the iOS browser, or the back button on Android)
   ///
   Future<bool> openPayAuthorizationErrorRecovery(
-      String recoverableErrorPayload) {
-    // We need to translate the received error JSON to query parameters in order to
-    // hand it over to the Portal.
+    String recoverableErrorPayload, {
+    bool ephemeral = false,
+  }) {
+    // We need to translate the received error JSON to query parameters in order
+    // to hand it over to the Portal.
     // However, we just include 'error' and all fields in 'details' to avoid running
     // into URI length constraints.
     Map<String, String> extraParams = {};
@@ -335,8 +363,11 @@ class MLogin {
           'The portal will be opened but no proper recovery will work out.');
     }
 
-    return openDataPage(this,
-        portalUriSuffix: 'recover-pay-authorization-error',
-        extraParams: extraParams);
+    return openDataPage(
+      this,
+      portalUriSuffix: 'recover-pay-authorization-error',
+      extraParams: extraParams,
+      ephemeral: ephemeral,
+    );
   }
 }
