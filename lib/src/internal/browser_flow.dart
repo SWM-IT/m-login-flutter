@@ -28,7 +28,7 @@ class BrowserFlow {
   ///
   /// It is recommended to *not* use ephemeral sessions.
   ///
-  /// Native access! May throw `PlatforException`s
+  /// Native access! May throw `PlatformException`s
   ///
   static Future<String> authenticate({
     required String url,
