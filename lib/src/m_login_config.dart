@@ -36,9 +36,9 @@ extension ParametersExtension on MLoginConfig {
   String getHost() {
     switch (this) {
       case MLoginConfig.i2:
-        return 'https://m-login-i2.app-test.swm.de';
+        return 'https://i.m-login.net';
       case MLoginConfig.k:
-        return 'https://m-login-k.app-test.swm.de';
+        return 'https://k.m-login.net';
       case MLoginConfig.p:
         return 'https://login.muenchen.de';
     }

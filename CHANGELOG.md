@@ -1,14 +1,26 @@
+## [0.5.0] - (21st March 2022)
+
+* Updated to new URIs for testing environments.
+
+**NOTE** Previous versions of the SDK are deprecated with this change. While production builds will
+not be affected, test builds against `i` or `k` environments will stop working at some point in the
+future!
+
 ## [0.4.0] - (25nd February 2022)
 
-* Added optional "ephemeral" parameter to specifiy whether ephemeral sessions (previous standard!) should be used or not. **NOTE**: Default behaviour was changed to `ephemeral = false`!
+* Added optional "ephemeral" parameter to specifiy whether ephemeral sessions (previous standard!)
+  should be used or not. **NOTE**: Default behaviour was changed to `ephemeral = false`!
 * Fixed issue where Login attempts would appear as "canceled" on Firefox
-* Added Toast warning message if no browser is installed, added error code to inform about missing browser
+* Added Toast warning message if no browser is installed, added error code to inform about missing
+  browser
 
 ## [0.3.0] - (28th January 2022)
 
 * Removed dependency on on `flutter_web_auth`
-* Fixed issue with task handling on Android: Now, the M-Login flow runs in the same task. No more browser pollution in the task switcher, no more issues when logging in twice
-* Fixed issue on Android where the task would fail when there is more than one app including the M-Login-SDK on the same phone
+* Fixed issue with task handling on Android: Now, the M-Login flow runs in the same task. No more
+  browser pollution in the task switcher, no more issues when logging in twice
+* Fixed issue on Android where the task would fail when there is more than one app including the
+  M-Login-SDK on the same phone
 * Simplified integration on Android: Fewer additions to the Manifest required
 
 ## [0.2.1] - (25th January 2022)
@@ -17,8 +29,10 @@
 
 ## [0.2.0] - (18th January 2022)
 
-* Added `openDriverLicenseVerification` call to `MLogin` to jump directly to the driver license verification flow in the M-Login portal
-* Added optional `idVerificationRedirectUri` configuration parameter to `MLogin` to support `openDriverLicenseVerification`
+* Added `openDriverLicenseVerification` call to `MLogin` to jump directly to the driver license
+  verification flow in the M-Login portal
+* Added optional `idVerificationRedirectUri` configuration parameter to `MLogin` to
+  support `openDriverLicenseVerification`
 
 ## [0.1.3] - (17th December 2021)
 
