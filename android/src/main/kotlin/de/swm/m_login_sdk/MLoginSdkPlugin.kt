@@ -69,6 +69,7 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
             intent.launchUrl(activity, url)
         } catch (e: ActivityNotFoundException) {
             runningAuthenticationCalls.remove(callbackUrlScheme)
+            // text is max 2 lines since Android 12
             Toast.makeText(
                 activity,
                 R.string.toast_no_browser_installed,
