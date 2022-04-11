@@ -39,7 +39,7 @@ class MLoginButton extends StatelessWidget {
             alignment: AlignmentDirectional.center,
             children: [
               Ink.image(
-                image: const AssetImage(
+                image: const ExactAssetImage(
                   'lib/assets/m_login_button_bg.png',
                   package: 'm_login_sdk',
                 ),
