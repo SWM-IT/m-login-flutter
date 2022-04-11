@@ -59,7 +59,7 @@ flutter pub add m_login_sdk
 This will add a dependency in your `pubspec.yml` file that looks like this:
 
 ```yaml
-  m_login_sdk: ^0.5.0
+  m_login_sdk: ^0.5.1
 ```
 
 ## SetUp

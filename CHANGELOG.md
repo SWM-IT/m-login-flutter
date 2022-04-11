@@ -1,3 +1,8 @@
+## [0.5.1] - (11th April 2022)
+
+* Shortened Toast message (Android 12 only supports max 2 lines)
+* Fixed MLogin Button Image loading issue
+
 ## [0.5.0] - (21st March 2022)
 
 * Updated to new URIs for testing environments.
