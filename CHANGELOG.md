@@ -1,3 +1,8 @@
+## [0.5.2] - (12th April 2022)
+
+* Wrapper MLoginButtonThemed for both buttons, to decide which one to use in which theme
+* Fixed MLoginButtonWhite so that it has the same structure as MLoginButton
+
 ## [0.5.1] - (11th April 2022)
 
 * Shortened Toast message (Android 12 only supports max 2 lines)
