@@ -16,7 +16,6 @@ import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
-import io.flutter.plugin.common.MethodChannel.Result
 import io.flutter.plugin.common.PluginRegistry
 
 /** MLoginSdkPlugin */
@@ -31,14 +30,14 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
 
     private lateinit var channel: MethodChannel
 
-    private val runningAuthenticationCalls = mutableMapOf<String, Result>()
+    private val runningAuthenticationCalls = mutableMapOf<String, MethodChannel.Result>()
 
     private var activityBinding: ActivityPluginBinding? = null
     private var launchedBrowser = false
 
     // region $MethodCallHandler
 
-    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: MethodChannel.Result) {
         if (call.method == "authenticate") {
             authenticate(call, result)
         } else {
@@ -49,7 +48,7 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
     // endregion
     // region $Actual Logic
 
-    private fun authenticate(call: MethodCall, result: Result) {
+    private fun authenticate(call: MethodCall, result: MethodChannel.Result) {
         val activity = activityBinding?.activity ?: run { return }
 
         val url = Uri.parse(call.argument<String>("url")!!)
@@ -100,10 +99,10 @@ class MLoginSdkPlugin : FlutterPlugin, MethodCallHandler,
     // endregion
     // region $NewIntentListener
 
-    override fun onNewIntent(intent: Intent?): Boolean {
+    override fun onNewIntent(intent: Intent): Boolean {
         // this is the best case! Getting a new intent means that the activity is
         // re-started - probably thanks to a redirect.
-        intent?.let { onRedirectionReceived(it) }
+        onRedirectionReceived(intent)
         return true
     }
 
