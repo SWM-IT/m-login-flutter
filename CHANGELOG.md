@@ -1,3 +1,8 @@
+## [0.6.0] - (17th May 2022)
+
+* Fixed Compile issues for Flutter 3.0.0
+* Updated Kotlin and Gradle versions
+
 ## [0.5.2] - (12th April 2022)
 
 * Wrapper MLoginButtonThemed for both buttons, to decide which one to use in which theme

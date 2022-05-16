@@ -59,7 +59,7 @@ flutter pub add m_login_sdk
 This will add a dependency in your `pubspec.yml` file that looks like this:
 
 ```yaml
-  m_login_sdk: ^0.5.2
+  m_login_sdk: ^0.6.0
 ```
 
 ## SetUp
@@ -79,7 +79,7 @@ it is set to something >= 21 (Flutter sets this to 16 by default).
 
 In the `android/app/src/main` folder, open the `AndroidManifest.xml` file, and find the activity
 that will be used to trigger MLogin functionality; in case of usual Flutter applications, this will
-be called `MainActivity`. In the XML definition of that activity, make sure that it contains the 
+be called `MainActivity`. In the XML definition of that activity, make sure that it contains the
 attribute `android:launchMode="singleTask"`. In total it should look similar to this:
 
 ```
@@ -97,7 +97,7 @@ attribute `android:launchMode="singleTask"`. In total it should look similar to 
 ```
 
 This is necessary to ensure that the login flow works correctly with Firefox, and other 3rd party
-browsers. Can be skipped if you can be sure that users will *only* work with Chrome. 
+browsers. Can be skipped if you can be sure that users will *only* work with Chrome.
 
 ##### Register for custom url scheme
 
