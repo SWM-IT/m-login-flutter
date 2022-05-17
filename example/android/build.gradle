@@ -1,15 +1,6 @@
 buildscript {
     ext.kotlin_version = '1.6.21'
     repositories {
-        //SWM internal Artifactory repositories. Packages are scanned, and also distributed faster in the internal network
-        //If one repo cannot be reached, the next will be tried
-        maven {
-            url 'https://artifactory.intra.swm.de/artifactory/central/'
-        }
-        // Mirrored google repo in artifactory
-        maven {
-            url 'https://artifactory.intra.swm.de/artifactory/google-maven/'
-        }
         google()
         mavenCentral()
     }
