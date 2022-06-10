@@ -6,7 +6,6 @@ Future<bool> openDataPage(
   required String portalUriSuffix,
   Map<String, String> extraParams = const {},
   required bool ephemeral,
-  String? username,
 }) async {
   final path = '${mLogin.config.getHost()}/portal/mobilesdk/$portalUriSuffix';
 
@@ -16,10 +15,6 @@ Future<bool> openDataPage(
 
   if (mLogin.loggedInMLoginUserId?.isNotEmpty == true) {
     queryParams['user_id'] = mLogin.loggedInMLoginUserId!;
-  }
-
-  if (username?.isNotEmpty == true) {
-    queryParams['username'] = username!;
   }
 
   extraParams.forEach((key, value) {
