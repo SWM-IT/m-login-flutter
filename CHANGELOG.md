@@ -1,3 +1,7 @@
+## [0.7.0] - (10th June 2022)
+
+* Introduced optional 'prefilledUsername' parameter as hint for the user to login
+
 ## [0.6.0] - (17th May 2022)
 
 * Fixed Compile issues for Flutter 3.0.0
