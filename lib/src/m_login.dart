@@ -54,14 +54,6 @@ class MLogin {
   /// this if possible. See constructor documentation of the constructor.
   String? loggedInMLoginUserId;
 
-  /// May be used to present a username in the MLogin mask.
-  /// In cases where there is an active MLogin on the device which differs from
-  /// the MLogin account used in the current app (which should be represented
-  /// by a valid [loggedInMLoginUserId], calling an MLogin SDK function to open
-  /// a data page (like [openPortalOverview]) will display a new login mask
-  /// with the [prefilledUsername] entered in the e-Mail input field.
-  String? prefilledUsername;
-
   final secureRandom = Random.secure();
 
   ///
@@ -116,7 +108,6 @@ class MLogin {
     required this.clientId,
     this.loggedInMLoginUserId,
     this.idVerificationRedirectUri,
-    this.prefilledUsername,
   });
 
   // ////////////////////////////////////////////////////////
@@ -192,12 +183,7 @@ class MLogin {
   /// was changed.
   ///
   Future<bool> openPortalOverview({bool ephemeral = false}) {
-    return openDataPage(
-      this,
-      portalUriSuffix: 'profile',
-      ephemeral: ephemeral,
-      username: prefilledUsername,
-    );
+    return openDataPage(this, portalUriSuffix: 'profile', ephemeral: ephemeral);
   }
 
   ///
@@ -234,7 +220,6 @@ class MLogin {
         'id_verification_redirect_uri': idRedirectUri,
       },
       ephemeral: ephemeral,
-      username: prefilledUsername,
     );
   }
 
@@ -270,13 +255,17 @@ class MLogin {
   /// or validated. It's safe to ignore the returned value and just assume data
   /// was changed.
   ///
-  Future<bool> openGrantSepaMandatePage(String methodId, String payeeId,
-      {bool ephemeral = false}) {
-    return openDataPage(this,
-        portalUriSuffix: 'grantmandate',
-        extraParams: {'method_id': methodId, 'payee_id': payeeId},
-        ephemeral: ephemeral,
-        username: prefilledUsername);
+  Future<bool> openGrantSepaMandatePage(
+    String methodId,
+    String payeeId, {
+    bool ephemeral = false,
+  }) {
+    return openDataPage(
+      this,
+      portalUriSuffix: 'grantmandate',
+      extraParams: {'method_id': methodId, 'payee_id': payeeId},
+      ephemeral: ephemeral,
+    );
   }
 
   ///
@@ -299,14 +288,15 @@ class MLogin {
   /// or validated. It's safe to ignore the returned value and just assume data
   /// was changed.
   ///
-  Future<bool> openPaymentMethodsOverviewPage(String payeeId,
-      {bool ephemeral = false}) {
+  Future<bool> openPaymentMethodsOverviewPage(
+    String payeeId, {
+    bool ephemeral = false,
+  }) {
     return openDataPage(
       this,
       portalUriSuffix: 'paymentmethods',
       extraParams: {'payee_id': payeeId},
       ephemeral: ephemeral,
-      username: prefilledUsername,
     );
   }
 
@@ -342,8 +332,10 @@ class MLogin {
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
   /// the iOS browser, or the back button on Android)
   ///
-  Future<bool> openPayAuthorizationErrorRecovery(String recoverableErrorPayload,
-      {bool ephemeral = false}) {
+  Future<bool> openPayAuthorizationErrorRecovery(
+    String recoverableErrorPayload, {
+    bool ephemeral = false,
+  }) {
     // We need to translate the received error JSON to query parameters in order
     // to hand it over to the Portal.
     // However, we just include 'error' and all fields in 'details' to avoid running
@@ -376,7 +368,6 @@ class MLogin {
       portalUriSuffix: 'recover-pay-authorization-error',
       extraParams: extraParams,
       ephemeral: ephemeral,
-      username: prefilledUsername,
     );
   }
 }
