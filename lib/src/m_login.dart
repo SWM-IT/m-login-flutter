@@ -272,11 +272,13 @@ class MLogin {
   ///
   Future<bool> openGrantSepaMandatePage(String methodId, String payeeId,
       {bool ephemeral = false}) {
-    return openDataPage(this,
-        portalUriSuffix: 'grantmandate',
-        extraParams: {'method_id': methodId, 'payee_id': payeeId},
-        ephemeral: ephemeral,
-        username: prefilledUsername);
+    return openDataPage(
+      this,
+      portalUriSuffix: 'grantmandate',
+      extraParams: {'method_id': methodId, 'payee_id': payeeId},
+      ephemeral: ephemeral,
+      username: prefilledUsername,
+    );
   }
 
   ///
