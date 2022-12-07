@@ -31,6 +31,5 @@ flutter:
       ios:
         pluginClass: MLoginSdkPlugin
 
-  uses-material-design: true
   assets:
     - lib/assets/
