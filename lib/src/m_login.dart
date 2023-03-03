@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:m_login_sdk/src/internal/authentication.dart';
+import 'package:m_login_sdk/src/internal/cit.dart';
 import 'package:m_login_sdk/src/internal/data_pages.dart';
+import 'package:m_login_sdk/src/m_login_cit_result.dart';
 import 'package:m_login_sdk/src/m_login_config.dart';
 import 'package:m_login_sdk/src/m_login_log.dart';
 import 'package:m_login_sdk/src/m_login_result.dart';
@@ -379,6 +381,17 @@ class MLogin {
       extraParams: extraParams,
       ephemeral: ephemeral,
       username: prefilledUsername,
+    );
+  }
+
+  /// todo
+  Future<MLoginCitResult> startCitFlow(String url, {
+    bool ephemeral = false,
+  }) async {
+    return runCit(
+      this,
+      url: url,
+      ephemeral: ephemeral,
     );
   }
 }
