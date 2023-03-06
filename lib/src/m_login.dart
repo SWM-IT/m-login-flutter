@@ -384,8 +384,16 @@ class MLogin {
     );
   }
 
-  /// todo
-  Future<MLoginCitResult> startCitFlow(String url, {
+  ///
+  /// Start a customer initiated transaction (CIT).
+  /// Opens a secure browser environment at [url] which should allow the user to
+  /// perform the transaction and redirect to the app afterwards.
+  ///
+  /// Note that the redirect __MUST__ match the [callbackUrlScheme] that was
+  /// configured when creating the [MLogin] instance.
+  ///
+  Future<MLoginCitResult> startCitFlow(
+    String url, {
     bool ephemeral = false,
   }) async {
     return runCit(
