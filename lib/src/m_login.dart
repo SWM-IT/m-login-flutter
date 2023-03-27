@@ -2,7 +2,9 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'package:m_login_sdk/src/internal/authentication.dart';
+import 'package:m_login_sdk/src/internal/cit.dart';
 import 'package:m_login_sdk/src/internal/data_pages.dart';
+import 'package:m_login_sdk/src/m_login_cit_result.dart';
 import 'package:m_login_sdk/src/m_login_config.dart';
 import 'package:m_login_sdk/src/m_login_log.dart';
 import 'package:m_login_sdk/src/m_login_result.dart';
@@ -379,6 +381,25 @@ class MLogin {
       extraParams: extraParams,
       ephemeral: ephemeral,
       username: prefilledUsername,
+    );
+  }
+
+  ///
+  /// Start a customer initiated transaction (CIT).
+  /// Opens a secure browser environment at [url] which should allow the user to
+  /// perform the transaction and redirect to the app afterwards.
+  ///
+  /// Note that the redirect __MUST__ match the [callbackUrlScheme] that was
+  /// configured when creating the [MLogin] instance.
+  ///
+  Future<MLoginCitResult> startCitFlow(
+    String url, {
+    bool ephemeral = false,
+  }) async {
+    return runCit(
+      this,
+      url: url,
+      ephemeral: ephemeral,
     );
   }
 }
