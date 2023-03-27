@@ -61,6 +61,13 @@ enum MLoginCitError {
   /// The user canceled the process when the browser context was shown.
   canceled,
 
+  /// The redirect URL returned by the browser flow is not a valid URL.
+  invalidRedirectUrl,
+
+  /// The redirect URL returned by the browser flow does not contain the 'jwt'
+  /// query parameter.
+  jwtMissing,
+
   /// Only to be expected (as a rare edge case) on Android phones. Indicates
   /// that there was no suitable browser found to run a M-Login session.
   ///

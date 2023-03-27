@@ -1,7 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:m_login_sdk/m_login_sdk.dart';
 import 'package:m_login_sdk/src/internal/browser_flow.dart';
-import 'package:m_login_sdk/src/m_login_cit_result.dart';
 
 Future<MLoginCitResult> runCit(
   MLogin mLogin, {
@@ -21,13 +20,13 @@ Future<MLoginCitResult> runCit(
     final redirectUrl = Uri.tryParse(browserFlowResult);
     if (redirectUrl == null) {
       MLoginLog.error('CIT flow returned invalid redirect url.');
-      return MLoginCitResult.error(MLoginCitError.unknown);
+      return MLoginCitResult.error(MLoginCitError.invalidRedirectUrl);
     }
 
     final jwt = redirectUrl.queryParameters['jwt'];
     if (jwt == null) {
       MLoginLog.error('CIT flow returned without jwt.');
-      return MLoginCitResult.error(MLoginCitError.unknown);
+      return MLoginCitResult.error(MLoginCitError.jwtMissing);
     }
 
     MLoginLog.info('CIT completed.');
