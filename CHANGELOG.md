@@ -1,3 +1,7 @@
+## [0.8.0] - (27th March 2023)
+
+* Introduced option to launch a customer initiated transaction (CIT) web flow
+
 ## [0.7.0] - (10th June 2022)
 
 * Introduced optional 'prefilledUsername' parameter as hint for the user to login
