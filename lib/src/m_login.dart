@@ -362,7 +362,7 @@ class MLogin {
       if (errorCategory.toLowerCase() != 'recoverable') {
         MLoginLog.error('Given error is not "recoverable" but $errorCategory!');
         MLoginLog.error(
-            'The portal will be opened but no proper recovery will work out!');
+            'The portal will be opened but no proper recovery will work out! ');
       }
 
       extraParams['error'] = jsonParams['error'];
