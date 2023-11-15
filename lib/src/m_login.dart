@@ -372,7 +372,7 @@ class MLogin {
       MLoginLog.error(
           'Given error payload ($recoverableErrorPayload) is not valid JSON: $e');
       MLoginLog.error(
-          'The portal will be opened but no proper recovery will work out. ');
+          'The portal will be opened but no proper recovery will work out.');
     }
 
     return openDataPage(
