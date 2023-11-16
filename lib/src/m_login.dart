@@ -41,16 +41,6 @@ class MLogin {
   /// __MUST__ match the [redirectUri], access attempts will fail otherwise.
   final String clientId;
 
-  /// This is only used and required for the [openDriverLicenseVerification] method.
-  /// Defines where the (external) driver license verification service (e.g.,
-  /// IDNow) should redirect to after a successful verification step. You can
-  /// use the same redirect uri as set in [redirectUri] but it is recommended
-  /// to use a uri specific to this use case instead.
-  ///
-  /// Expected to be a full Uri, starting with your custom scheme.
-  /// Example: `my.custom.scheme:/redirect/id_verify`
-  final String? idVerificationRedirectUri;
-
   /// [loggedInMLoginUserId] Identifies the user that is currently logged-in in
   /// the app using the SDK. Optional, but it is __strongly__ recommended to set
   /// this if possible. See constructor documentation of the constructor.
@@ -117,7 +107,6 @@ class MLogin {
     required this.callbackUrlScheme,
     required this.clientId,
     this.loggedInMLoginUserId,
-    this.idVerificationRedirectUri,
     this.prefilledUsername,
   });
 
@@ -209,9 +198,6 @@ class MLogin {
   /// Does not require previous Login. In case there is no valid login present
   /// in the browser, the user will be prompted to log in again.
   ///
-  /// Requires [idVerificationRedirectUri] to be set!
-  /// Throws exception if not.
-  ///
   /// It is strongly recommended to keep [loggedInMLoginUserId] in sync with the
   /// logged in user of the calling app to ensure that the profile page is shown
   /// for the correct user.
@@ -221,20 +207,45 @@ class MLogin {
   /// the iOS browser, or the back button on Android). This does not infer any
   /// data change or validation and can safely be ignored.
   ///
-  Future<bool> openDriverLicenseVerification({bool ephemeral = false}) {
-    final idRedirectUri = idVerificationRedirectUri;
-    if (idRedirectUri == null) {
-      throw Exception('"idVerificationRedirectUri" MUST be set when calling '
-          'openDriverLicenseVerification!');
-    }
-
+  Future<bool> openDriverLicenseVerification(
+      {bool ephemeral = false, required String idVerificationRedirectUri}) {
     return openDataPage(
       this,
       portalUriSuffix: 'driver-licence-direct-verification',
       extraParams: {
         'id_verification_client_id': clientId,
-        'id_verification_redirect_uri': idRedirectUri,
+        'id_verification_redirect_uri': idVerificationRedirectUri,
       },
+      ephemeral: ephemeral,
+      username: prefilledUsername,
+    );
+  }
+
+  ///
+  /// Opens the external photocollect library, which enables the user to
+  /// take a photo using his device or upload an existing picture.
+  /// The picture should be a portrait of the user, and is validated by the
+  /// library for correct format.
+  ///
+  /// Returns [true] if the portrait was successfully uploaded, and [false] if
+  /// anything went wrong or the user canceled the process.
+  ///
+  Future<bool> openPhotoUpload(
+      {bool ephemeral = false, String? overrideRedirectUri}) {
+    return openDataPage(
+      this,
+      portalUriSuffix: 'portrait',
+      ephemeral: ephemeral,
+      username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
+    );
+  }
+
+  // TODO: add doc after testing function
+  Future<bool> openStudentStatus({bool ephemeral = false}) {
+    return openDataPage(
+      this,
+      portalUriSuffix: 'studentstatus',
       ephemeral: ephemeral,
       username: prefilledUsername,
     );
