@@ -1,3 +1,32 @@
+## [0.9.0] - (todo)
+
+### Login button update:
+
+The Login button received a design overhaul. It now has a modern look and more configuration
+options.
+
+#### Breaking changes
+* The `MLoginButtonThemed` and `MLoginButtonWhite` have been removed.
+  Now there is only one `MLoginButton` and the styling and other features can be controlled by 
+  passing the correct `MLoginButtonData`.
+  You should use `MLoginButtonData(style: MLoginButtonStyle.blue)` in light mode and
+  `MLoginButtonData(style: MLoginButtonStyle.white)` in dark mode.
+* The text of the button can not be configured anymore. It is always "Sign in with M-Login".
+  The language (German or English) can be controlled by passing the app locale.
+* Padding cannot be configured anymore. Simply wrap the button in a `Padding` widget.
+* `isEnabled` has moved from the button itself to `MLoginButtonData`.
+* A `semanticsLabel` cannot be passed anymore, the semantics are always "Sign in with M-Login".
+
+#### New features
+
+* **Shape:** It is now possible to choose between two different button shapes: rectangle or pill
+* **Corner Radius:** It is now possible to control the corner radius of the button to achieve an
+  appearance that is consistent to the rest of your app (only for rectangle shape).
+* **Fill width:** It is now possible to set a `fillWidth` parameter that determines whether or not
+  the button should use the available horizontal space.
+
+All the configuration can be done by setting the `data` of the button.
+
 ## [0.8.0] - (27th March 2023)
 
 * Introduced option to launch a customer initiated transaction (CIT) web flow

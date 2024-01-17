@@ -156,7 +156,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                ConfigurableButton(),
+                const ConfigurableButton(),
               ],
             ),
           ),
