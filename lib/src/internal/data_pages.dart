@@ -13,14 +13,14 @@ Future<bool> openDataPage(
 
   var queryParams = <String, String>{};
   queryParams['client_id'] = mLogin.clientId;
-  queryParams['done_redirect_uri'] = overrideRedirectUri ?? mLogin.redirectUri;
+  queryParams['redirect_uri'] = overrideRedirectUri ?? mLogin.redirectUri;
 
   if (mLogin.loggedInMLoginUserId?.isNotEmpty == true) {
     queryParams['user_id'] = mLogin.loggedInMLoginUserId!;
   }
 
   if (username?.isNotEmpty == true) {
-    queryParams['username'] = username!;
+    queryParams['user_name'] = username!;
   }
 
   extraParams.forEach((key, value) {
