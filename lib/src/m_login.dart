@@ -28,6 +28,10 @@ class MLogin {
   ///
   /// This URL scheme __MUST__ also be defined for Android in the
   /// `AndroidManifest.xml` file. See the README on how to do that.
+  ///
+  /// Some methods also have a parameter [overrideRedirectUri], which overrides
+  /// this general redirect uri for the given call.
+  ///
   final String redirectUri;
 
   /// Necessary to catch when the web process finishes in iOS.
@@ -62,6 +66,8 @@ class MLogin {
   /// __NOTE__: While it is allowed to have multiple instances, there should
   /// always be at most one call (thus: browser session) running at the same
   /// time.
+  /// The browser session is active for 15 minutes, or for 180 days, in case
+  /// the user set the "remain logged in" checkbox.
   ///
   /// [config] Defines which MLogin tier is to be accessed (i2, k, p)
   ///
@@ -93,13 +99,6 @@ class MLogin {
   /// into the correct account.
   ///
   /// Can (and should) be updated when the login changes.
-  ///
-  /// [idVerificationRedirectUri] is only used and required for the
-  /// [openDriverLicenseVerification] method.
-  /// Defines where the (external) driver license verification service (e.g.,
-  /// IDNow) should redirect to after a successful verification step. You can
-  /// use the same redirect uri as set in [redirectUri] but it is recommended
-  /// to use a uri specific to this use case instead.
   ///
   MLogin({
     required this.config,
@@ -182,12 +181,16 @@ class MLogin {
   /// or validated. It's safe to ignore the returned value and just assume data
   /// was changed.
   ///
-  Future<bool> openPortalOverview({bool ephemeral = false}) {
+  Future<bool> openPortalOverview({
+    bool ephemeral = false,
+    String? overrideRedirectUri,
+  }) {
     return openDataPage(
       this,
       portalUriSuffix: 'profile',
       ephemeral: ephemeral,
       username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
     );
   }
 
@@ -201,6 +204,10 @@ class MLogin {
   /// It is strongly recommended to keep [loggedInMLoginUserId] in sync with the
   /// logged in user of the calling app to ensure that the profile page is shown
   /// for the correct user.
+  ///
+  /// [idVerificationRedirectUri] defines where the (external)
+  /// driver license verification service (e.g. IDNow) should redirect to
+  /// after a successful verification step.
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
@@ -230,8 +237,10 @@ class MLogin {
   /// Returns [true] if the portrait was successfully uploaded, and [false] if
   /// anything went wrong or the user canceled the process.
   ///
-  Future<bool> openPhotoUpload(
-      {bool ephemeral = false, String? overrideRedirectUri}) {
+  Future<bool> openPhotoUpload({
+    bool ephemeral = false,
+    String? overrideRedirectUri,
+  }) {
     return openDataPage(
       this,
       portalUriSuffix: 'portrait',
@@ -249,12 +258,16 @@ class MLogin {
   ///
   /// After successfully logging in, returns [true] and the user is
   /// validated as a student. Returns [false] otherwise.
-  Future<bool> openStudentStatus({bool ephemeral = false}) {
+  Future<bool> openStudentStatus({
+    bool ephemeral = false,
+    String? overrideRedirectUri,
+  }) {
     return openDataPage(
       this,
       portalUriSuffix: 'student-status',
       ephemeral: ephemeral,
       username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
     );
   }
 
@@ -290,14 +303,19 @@ class MLogin {
   /// or validated. It's safe to ignore the returned value and just assume data
   /// was changed.
   ///
-  Future<bool> openGrantSepaMandatePage(String methodId, String payeeId,
-      {bool ephemeral = false}) {
+  Future<bool> openGrantSepaMandatePage(
+    String methodId,
+    String payeeId, {
+    bool ephemeral = false,
+    String? overrideRedirectUri,
+  }) {
     return openDataPage(
       this,
       portalUriSuffix: 'grantmandate',
       extraParams: {'method_id': methodId, 'payee_id': payeeId},
       ephemeral: ephemeral,
       username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
     );
   }
 
@@ -321,14 +339,18 @@ class MLogin {
   /// or validated. It's safe to ignore the returned value and just assume data
   /// was changed.
   ///
-  Future<bool> openPaymentMethodsOverviewPage(String payeeId,
-      {bool ephemeral = false}) {
+  Future<bool> openPaymentMethodsOverviewPage(
+    String payeeId, {
+    bool ephemeral = false,
+    String? overrideRedirectUri,
+  }) {
     return openDataPage(
       this,
       portalUriSuffix: 'paymentmethods',
       extraParams: {'payee_id': payeeId},
       ephemeral: ephemeral,
       username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
     );
   }
 
@@ -364,8 +386,11 @@ class MLogin {
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
   /// the iOS browser, or the back button on Android)
   ///
-  Future<bool> openPayAuthorizationErrorRecovery(String recoverableErrorPayload,
-      {bool ephemeral = false}) {
+  Future<bool> openPayAuthorizationErrorRecovery(
+    String recoverableErrorPayload, {
+    bool ephemeral = false,
+    String? overrideRedirectUri,
+  }) {
     // We need to translate the received error JSON to query parameters in order
     // to hand it over to the Portal.
     // However, we just include 'error' and all fields in 'details' to avoid running
@@ -399,6 +424,7 @@ class MLogin {
       extraParams: extraParams,
       ephemeral: ephemeral,
       username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
     );
   }
 
