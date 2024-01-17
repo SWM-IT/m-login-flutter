@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m_login_sdk/m_login_sdk.dart';
+import 'package:m_login_sdk_example/configurable_button.dart';
 import 'package:rxdart/rxdart.dart';
 
 void main() {
@@ -97,10 +98,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                     ),
                   ],
                 ),
-                MLoginButton(
-                  text: 'Mit M-Login anmelden',
-                  onPressed: _startLogin,
-                ),
+                MLoginButton(onPressed: _startLogin),
                 Text(loginResultText),
                 ElevatedButton(
                   onPressed: _startSignUp,
@@ -117,13 +115,9 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   child: const Text('Drivers License Verification'),
                 ),
                 Text(driversLicenseResultText),
-                Container(
-                  color: Colors.grey,
-                  padding: const EdgeInsets.all(10),
-                  child: MLoginButtonWhite(
-                    text: 'Payment Methods Page',
-                    onPressed: _openPaymentMethodsPage,
-                  ),
+                ElevatedButton(
+                  onPressed: _openPaymentMethodsPage,
+                  child: const Text('Payment Methods Page'),
                 ),
                 Text(paymentMethodsPageResultText),
                 Padding(
@@ -161,6 +155,8 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 16),
+                ConfigurableButton(),
               ],
             ),
           ),
