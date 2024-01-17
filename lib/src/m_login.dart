@@ -223,7 +223,7 @@ class MLogin {
 
   ///
   /// Opens the external photocollect library, which enables the user to
-  /// take a photo using his device or upload an existing picture.
+  /// take a photo using her device or upload an existing picture.
   /// The picture should be a portrait of the user, and is validated by the
   /// library for correct format.
   ///
@@ -241,11 +241,18 @@ class MLogin {
     );
   }
 
-  // TODO: add doc after testing function
+  /// This function is used to authorize users for offers which are only
+  /// eligible for students, e.g. discounted tickets.
+  /// Shows a list of participating universities and colleges, which are
+  /// internally using the Shibboleth authentication.
+  /// User selects a university or college and is forwarded to its login.
+  ///
+  /// After successfully logging in, returns [true] and the user is
+  /// validated as a student. Returns [false] otherwise.
   Future<bool> openStudentStatus({bool ephemeral = false}) {
     return openDataPage(
       this,
-      portalUriSuffix: 'studentstatus',
+      portalUriSuffix: 'student-status',
       ephemeral: ephemeral,
       username: prefilledUsername,
     );
