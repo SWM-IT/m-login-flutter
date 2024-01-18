@@ -246,8 +246,8 @@ class MLogin {
 
   ///
   /// Opens a page in the browser where the user can grant a SEPA mandate for
-  /// payments, using the already entered bank
-  /// account information in the M-Login.
+  /// payments, using the already entered bank account information in the
+  /// M-Login.
   ///
   /// Calling this is usually the result of trying to trigger a payment for the
   /// given service ("checkout") and receiving a `mandate_missing` error message
