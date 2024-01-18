@@ -60,7 +60,7 @@ future!
 
 ## [0.4.0] - (25nd February 2022)
 
-* Added optional "ephemeral" parameter to specifiy whether ephemeral sessions (previous standard!)
+* Added optional "ephemeral" parameter to specify whether ephemeral sessions (previous standard!)
   should be used or not. **NOTE**: Default behaviour was changed to `ephemeral = false`!
 * Fixed issue where Login attempts would appear as "canceled" on Firefox
 * Added Toast warning message if no browser is installed, added error code to inform about missing
