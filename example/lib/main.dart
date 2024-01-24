@@ -41,6 +41,8 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
   String profilePageResultText = '';
   String paymentMethodsPageResultText = '';
   String driversLicenseResultText = '';
+  String photoUploadResultText = '';
+  String studentStatusResultText = '';
 
   BehaviorSubject<String?> userName = BehaviorSubject.seeded(null);
   BehaviorSubject<String?> userId = BehaviorSubject.seeded(null);
@@ -58,7 +60,6 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     clientId: 'm-login-demo-app-k',
     callbackUrlScheme: 'k.de.swm.login.app',
     redirectUri: 'k.de.swm.login.app:/oauth2redirect/example',
-    idVerificationRedirectUri: 'k.de.swm.login.app:/oauth2redirect/example',
   );
 
   @override
@@ -119,6 +120,16 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   onPressed: _openPaymentMethodsPage,
                   child: const Text('Payment Methods Page'),
                 ),
+                ElevatedButton(
+                  onPressed: _openPhotoUpload,
+                  child: const Text('Open Photo Upload'),
+                ),
+                Text(photoUploadResultText),
+                ElevatedButton(
+                  onPressed: _openStudentStatusPage,
+                  child: const Text('Student Status'),
+                ),
+                Text(studentStatusResultText),
                 Text(paymentMethodsPageResultText),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -165,7 +176,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     );
   }
 
-  _startLogin() async {
+  Future<void> _startLogin() async {
     setState(() {
       loginResultText = 'Logging in...';
     });
@@ -185,7 +196,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     });
   }
 
-  _startSignUp() async {
+  Future<void> _startSignUp() async {
     setState(() {
       signUpResultText = 'Signing up...';
     });
@@ -203,7 +214,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     });
   }
 
-  _openProfilePage() async {
+  Future<void> _openProfilePage() async {
     setState(() {
       profilePageResultText = 'Opening profile page...';
     });
@@ -216,13 +227,12 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     });
   }
 
-  _openPaymentMethodsPage() async {
+  Future<void> _openPaymentMethodsPage() async {
     setState(() {
       paymentMethodsPageResultText = 'Opening payment methods page...';
     });
 
     final result = await mLogin.openPaymentMethodsOverviewPage(
-      'm-login-demo-payee-k',
       ephemeral: ephemeral,
     );
     setState(() {
@@ -231,16 +241,43 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     });
   }
 
-  _openDriversLicenseVerificationPage() async {
+  Future<void> _openDriversLicenseVerificationPage() async {
     setState(() {
       driversLicenseResultText = 'Opening Drivers License page...';
     });
 
     final result = await mLogin.openDriverLicenseVerification(
       ephemeral: ephemeral,
+      idVerificationRedirectUri: 'k.de.swm.login.app:/oauth2redirect/example',
     );
     setState(() {
       driversLicenseResultText = 'Profile was shown, result: $result';
+    });
+  }
+
+  Future<void> _openPhotoUpload() async {
+    setState(() {
+      photoUploadResultText = 'Opening Photo upload page...';
+    });
+
+    final result = await mLogin.openPhotoUpload(
+      ephemeral: ephemeral,
+    );
+    setState(() {
+      photoUploadResultText = 'Photo upload was shown, result: $result';
+    });
+  }
+
+  Future<void> _openStudentStatusPage() async {
+    setState(() {
+      studentStatusResultText = 'Opening Student status page...';
+    });
+
+    final result = await mLogin.openStudentStatus(
+      ephemeral: ephemeral,
+    );
+    setState(() {
+      studentStatusResultText = 'Student status was shown, result: $result';
     });
   }
 }

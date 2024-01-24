@@ -14,7 +14,7 @@ dependencies:
     sdk: flutter
 
   # Needed to create PKCE challenges and verification codes
-  crypto: ^3.0.1
+  crypto: ^3.0.3
   flutter_svg: 2.0.9
 
 dev_dependencies:

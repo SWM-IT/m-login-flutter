@@ -7,12 +7,13 @@ Future<bool> openDataPage(
   Map<String, String> extraParams = const {},
   required bool ephemeral,
   String? username,
+  String? overrideRedirectUri,
 }) async {
   final path = '${mLogin.config.getHost()}/portal/mobilesdk/$portalUriSuffix';
 
   var queryParams = <String, String>{};
   queryParams['client_id'] = mLogin.clientId;
-  queryParams['done_redirect_uri'] = mLogin.redirectUri;
+  queryParams['done_redirect_uri'] = overrideRedirectUri ?? mLogin.redirectUri;
 
   if (mLogin.loggedInMLoginUserId?.isNotEmpty == true) {
     queryParams['user_id'] = mLogin.loggedInMLoginUserId!;

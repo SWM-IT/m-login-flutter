@@ -71,9 +71,9 @@ that, we'll need to make some minor adjustments in the native code of your Flutt
 
 ##### Set min API version
 
-First, make sure that you've set the right min SDK to >=21. For that, open the `build.gradle` file
+First, make sure that you've set the right min SDK to >=24. For that, open the `build.gradle` file
 in `android.app`, locate the line `minSdkVersion` (probably in `defaultConfig`) and make sure that
-it is set to something >= 21 (Flutter sets this to 16 by default).
+it is set to something >= 24 (Flutter sets this to 16 by default).
 
 ##### Make sure your Main Activity runs as `singleTask`
 
@@ -235,7 +235,8 @@ included to use out of the box: The `MLoginTrivialLogger`, which simply prints a
 console.
 
 > __NOTE__: Printing of log messages of the `debug` level should *only* be active in debug
-> environments as potentially sensitive data may be included. Do *not* expose to any place that might
+> environments as potentially sensitive data may be included. Do *not* expose to any place that
+> might
 > be accessible to other apps.
 
 #### Ephemeral browser sessions
@@ -302,9 +303,6 @@ In case your service requires your users to have a valid drivers license, you ca
 `openDriverLicenseVerification` call. If your user does not yet have her drivers license verified,
 this will directly open the corresponding flow in the M-Login portal. For this, you MUST go through
 the offered web experience; setting your own verification data is not yet possible.
-
-> __NOTE__: Make sure that you've set `idVerificationRedirectUri` when configuring your `MLogin`
-> object!
 
 #### PaymentMethods
 
