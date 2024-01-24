@@ -246,8 +246,8 @@ class MLogin {
 
   ///
   /// Opens a page in the browser where the user can grant a SEPA mandate for
-  /// payments to the [payeeId] of the service, using the already entered bank
-  /// account information in the M-Login.
+  /// payments, using the already entered bank account information in the
+  /// M-Login.
   ///
   /// Calling this is usually the result of trying to trigger a payment for the
   /// given service ("checkout") and receiving a `mandate_missing` error message
@@ -261,8 +261,6 @@ class MLogin {
   /// Parameters, and where to get them:
   /// * The [methodId] identifies the SEPA payment method that needs a mandate.
   ///   If you tried to do a simple checkout, this is the default payment method
-  /// * The [payeeId] identifies the entity that shall receive the money. Talk
-  ///   to the M-Login team if you don't know what to put there
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
@@ -272,12 +270,12 @@ class MLogin {
   /// or validated. It's safe to ignore the returned value and just assume data
   /// was changed.
   ///
-  Future<bool> openGrantSepaMandatePage(String methodId, String payeeId,
+  Future<bool> openGrantSepaMandatePage(String methodId,
       {bool ephemeral = false}) {
     return openDataPage(
       this,
       portalUriSuffix: 'grantmandate',
-      extraParams: {'method_id': methodId, 'payee_id': payeeId},
+      extraParams: {'method_id': methodId},
       ephemeral: ephemeral,
       username: prefilledUsername,
     );
@@ -289,12 +287,6 @@ class MLogin {
   /// Does not require previous Login. In case there is no valid login present
   /// in the browser, the user will be prompted to log in again.
   ///
-  /// The parameter [payeeId] is the id of the entity that will receive money,
-  /// when the user pays in this service using SEPA. Must be added here to
-  /// ensure that, when the user adds a new SEPA payment method, the correct
-  /// mandate is already requested as well (see documentation of
-  /// [openGrantSepaMandatePage]).
-  ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
   /// the iOS browser, or the back button on Android)
@@ -303,12 +295,10 @@ class MLogin {
   /// or validated. It's safe to ignore the returned value and just assume data
   /// was changed.
   ///
-  Future<bool> openPaymentMethodsOverviewPage(String payeeId,
-      {bool ephemeral = false}) {
+  Future<bool> openPaymentMethodsOverviewPage({bool ephemeral = false}) {
     return openDataPage(
       this,
       portalUriSuffix: 'paymentmethods',
-      extraParams: {'payee_id': payeeId},
       ephemeral: ephemeral,
       username: prefilledUsername,
     );

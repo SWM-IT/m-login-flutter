@@ -71,9 +71,9 @@ that, we'll need to make some minor adjustments in the native code of your Flutt
 
 ##### Set min API version
 
-First, make sure that you've set the right min SDK to >=21. For that, open the `build.gradle` file
+First, make sure that you've set the right min SDK to >=24. For that, open the `build.gradle` file
 in `android.app`, locate the line `minSdkVersion` (probably in `defaultConfig`) and make sure that
-it is set to something >= 21 (Flutter sets this to 16 by default).
+it is set to something >= 24 (Flutter sets this to 16 by default).
 
 ##### Make sure your Main Activity runs as `singleTask`
 
