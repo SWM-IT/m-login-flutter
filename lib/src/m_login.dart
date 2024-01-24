@@ -214,8 +214,10 @@ class MLogin {
   /// the iOS browser, or the back button on Android). This does not infer any
   /// data change or validation and can safely be ignored.
   ///
-  Future<bool> openDriverLicenseVerification(
-      {bool ephemeral = false, required String idVerificationRedirectUri}) {
+  Future<bool> openDriverLicenseVerification({
+    bool ephemeral = false,
+    required String idVerificationRedirectUri,
+  }) {
     return openDataPage(
       this,
       portalUriSuffix: 'driver-licence-direct-verification',
