@@ -206,7 +206,8 @@ included to use out of the box: The `MLoginTrivialLogger`, which simply prints a
 console.
 
 > __NOTE__: Printing of log messages of the `debug` level should *only* be active in debug
-> environments as potentially sensitive data may be included. Do *not* expose to any place that might
+> environments as potentially sensitive data may be included. Do *not* expose to any place that
+> might
 > be accessible to other apps.
 
 #### Ephemeral browser sessions
@@ -273,9 +274,6 @@ In case your service requires your users to have a valid drivers license, you ca
 `openDriverLicenseVerification` call. If your user does not yet have her drivers license verified,
 this will directly open the corresponding flow in the M-Login portal. For this, you MUST go through
 the offered web experience; setting your own verification data is not yet possible.
-
-> __NOTE__: Make sure that you've set `idVerificationRedirectUri` when configuring your `MLogin`
-> object!
 
 #### PaymentMethods
 
