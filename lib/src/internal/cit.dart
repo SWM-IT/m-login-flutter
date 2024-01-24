@@ -31,7 +31,7 @@ Future<MLoginCitResult> runCit(
 
     MLoginLog.info('CIT completed.');
     return MLoginCitResultSuccess(jwt: jwt);
-  } on PlatformException catch (e) {
+  } on PlatformException catch (e, stacktrace) {
     switch (e.code.toLowerCase()) {
       case 'canceled':
         MLoginLog.info('CIT flow was canceled by the user');
@@ -40,11 +40,11 @@ Future<MLoginCitResult> runCit(
         MLoginLog.info('CIT failed: No browser installed.');
         return MLoginCitResult.error(MLoginCitError.noBrowserInstalled);
       default:
-        MLoginLog.error('CIT failed with unknown PlatformException: $e');
+        MLoginLog.error('CIT failed with unknown PlatformException: $e\n$stacktrace');
         return MLoginCitResult.error(MLoginCitError.unknown);
     }
-  } on Exception catch (e) {
-    MLoginLog.error('CIT failed with unexpected Exception: $e');
+  } on Exception catch (e, stacktrace) {
+    MLoginLog.error('CIT failed with unexpected Exception: $e\n$stacktrace');
     return MLoginCitResult.error(MLoginCitError.unknown);
   }
   
