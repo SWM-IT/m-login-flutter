@@ -20,7 +20,7 @@ Future<bool> openDataPage(
   }
 
   if (username?.isNotEmpty == true) {
-    queryParams['user_name'] = username!;
+    queryParams['username'] = username!;
   }
 
   extraParams.forEach((key, value) {
