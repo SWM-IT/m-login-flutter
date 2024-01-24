@@ -120,6 +120,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   onPressed: _openPaymentMethodsPage,
                   child: const Text('Payment Methods Page'),
                 ),
+                Text(paymentMethodsPageResultText),
                 ElevatedButton(
                   onPressed: _openPhotoUpload,
                   child: const Text('Open Photo Upload'),
@@ -130,7 +131,6 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   child: const Text('Student Status'),
                 ),
                 Text(studentStatusResultText),
-                Text(paymentMethodsPageResultText),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
