@@ -1,3 +1,8 @@
+## Next release - (TBD)
+
+* Removed parameter payeeId from functions openGrantSepaMandatePage and
+  openPaymentMethodsOverviewPage
+
 ## [0.8.0] - (27th March 2023)
 
 * Introduced option to launch a customer initiated transaction (CIT) web flow

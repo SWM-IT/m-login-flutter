@@ -237,7 +237,6 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     });
 
     final result = await mLogin.openPaymentMethodsOverviewPage(
-      'm-login-demo-payee-k',
       ephemeral: ephemeral,
     );
     setState(() {

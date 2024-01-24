@@ -25,9 +25,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
 android {
-    if (project.android.hasProperty("namespace")) {
-        namespace 'de.swm.m_login_sdk'
-    }
+    namespace 'de.swm.m_login_sdk'
 
     compileSdk 34
 
