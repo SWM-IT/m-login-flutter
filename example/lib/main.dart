@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m_login_sdk/m_login_sdk.dart';
+import 'package:m_login_sdk_example/configurable_button.dart';
 import 'package:rxdart/rxdart.dart';
 
 void main() {
@@ -98,10 +99,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                     ),
                   ],
                 ),
-                MLoginButton(
-                  text: 'Mit M-Login anmelden',
-                  onPressed: _startLogin,
-                ),
+                MLoginButton(onPressed: _startLogin),
                 Text(loginResultText),
                 ElevatedButton(
                   onPressed: _startSignUp,
@@ -119,6 +117,11 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                 ),
                 Text(driversLicenseResultText),
                 ElevatedButton(
+                  onPressed: _openPaymentMethodsPage,
+                  child: const Text('Payment Methods Page'),
+                ),
+                Text(paymentMethodsPageResultText),
+                ElevatedButton(
                   onPressed: _openPhotoUpload,
                   child: const Text('Open Photo Upload'),
                 ),
@@ -128,15 +131,6 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   child: const Text('Student Status'),
                 ),
                 Text(studentStatusResultText),
-                Container(
-                  color: Colors.grey,
-                  padding: const EdgeInsets.all(10),
-                  child: MLoginButtonWhite(
-                    text: 'Payment Methods Page',
-                    onPressed: _openPaymentMethodsPage,
-                  ),
-                ),
-                Text(paymentMethodsPageResultText),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -172,6 +166,8 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 16),
+                const ConfigurableButton(),
               ],
             ),
           ),
