@@ -22,8 +22,8 @@ class MLoginButtonData {
   /// Shape of the button.
   /// - [MLoginButtonShape.roundedRectangle] (default) for a rectangle with
   ///   rounded corners. Use [cornerRadius] to adjust the radius.
-  /// - [MLoginButtonShape.pill] for a pill shaped button with completely
-  ///   round ends.
+  /// - [MLoginButtonShape.pill] for a pill shaped button with fully
+  ///   rounded corners.
   final MLoginButtonShape shape;
 
   /// Corner radius of the button, only used if [shape] is
