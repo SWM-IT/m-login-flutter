@@ -220,11 +220,7 @@ class MLogin {
   }) {
     return openDataPage(
       this,
-      portalUriSuffix: 'driver-licence-direct-verification',
-      extraParams: {
-        'id_verification_client_id': clientId,
-        'id_verification_redirect_uri': idVerificationRedirectUri,
-      },
+      portalUriSuffix: 'verifications/driver_license/start',
       ephemeral: ephemeral,
       username: prefilledUsername,
     );
@@ -245,7 +241,7 @@ class MLogin {
   }) {
     return openDataPage(
       this,
-      portalUriSuffix: 'portrait',
+      portalUriSuffix: 'verification/photo/start',
       ephemeral: ephemeral,
       username: prefilledUsername,
       overrideRedirectUri: overrideRedirectUri,
