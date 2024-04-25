@@ -249,7 +249,8 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
       ephemeral: ephemeral,
     );
     setState(() {
-      driversLicenseResultText = 'Profile was shown, result: $result';
+      driversLicenseResultText =
+          'Drivers license was verified, result: $result';
     });
   }
 
