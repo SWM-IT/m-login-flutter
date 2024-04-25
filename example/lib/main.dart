@@ -158,7 +158,8 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                         onChanged: (text) => userId.add(text),
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          hintText: 'User Id (may be random value)',
+                          hintText: 'User Id, must be the correct id '
+                              'corresponding to the user name',
                         ),
                         keyboardType: TextInputType.text,
                         autofocus: true,
@@ -246,7 +247,6 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
 
     final result = await mLogin.openDriverLicenseVerification(
       ephemeral: ephemeral,
-      idVerificationRedirectUri: 'k.de.swm.login.app:/oauth2redirect/example',
     );
     setState(() {
       driversLicenseResultText = 'Profile was shown, result: $result';

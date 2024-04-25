@@ -2,8 +2,8 @@
 
 * Removed parameter payeeId from functions openGrantSepaMandatePage and
   openPaymentMethodsOverviewPage
-* Moved parameter 'idVerificationRedirectUri' from MLogin constructor
-  to function 'openDriverLicenseVerification', as it is only needed there.
+* Removed parameter 'idVerificationRedirectUri' from MLogin constructor,
+  function 'openDriverLicenseVerification' uses parameter 'redirectUri' as all other functions.
 * Added new function 'openPhotoUpload'
 * Added parameter 'overrideRedirectUri' to functions where applicable,
   to override general redirect uri.
