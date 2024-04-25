@@ -205,10 +205,6 @@ class MLogin {
   /// logged in user of the calling app to ensure that the profile page is shown
   /// for the correct user.
   ///
-  /// [idVerificationRedirectUri] defines where the (external)
-  /// driver license verification service (e.g. IDNow) should redirect to
-  /// after a successful verification step.
-  ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
   /// the iOS browser, or the back button on Android). This does not infer any
@@ -216,13 +212,14 @@ class MLogin {
   ///
   Future<bool> openDriverLicenseVerification({
     bool ephemeral = false,
-    required String idVerificationRedirectUri,
+    String? overrideRedirectUri,
   }) {
     return openDataPage(
       this,
       portalUriSuffix: 'verifications/driver_license/start',
       ephemeral: ephemeral,
       username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
     );
   }
 
