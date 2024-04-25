@@ -2,10 +2,10 @@
 
 * Removed parameter payeeId from functions openGrantSepaMandatePage and
   openPaymentMethodsOverviewPage
-* Moved parameter 'idVerificationRedirectUri' from MLogin constructor 
+* Moved parameter 'idVerificationRedirectUri' from MLogin constructor
   to function 'openDriverLicenseVerification', as it is only needed there.
-* Added new functions 'openPhotoUpload' and 'openStudentStatus'
-* Added parameter 'overrideRedirectUri' to functions where applicable, 
+* Added new function 'openPhotoUpload'
+* Added parameter 'overrideRedirectUri' to functions where applicable,
   to override general redirect uri.
 
 ## [0.8.0] - (27th March 2023)

@@ -248,27 +248,6 @@ class MLogin {
     );
   }
 
-  /// This function is used to authorize users for offers which are only
-  /// eligible for students, e.g. discounted tickets.
-  /// Shows a list of participating universities and colleges, which are
-  /// internally using the Shibboleth authentication.
-  /// User selects a university or college and is forwarded to its login.
-  ///
-  /// After successfully logging in, returns [true] and the user is
-  /// validated as a student. Returns [false] otherwise.
-  Future<bool> openStudentStatus({
-    bool ephemeral = false,
-    String? overrideRedirectUri,
-  }) {
-    return openDataPage(
-      this,
-      portalUriSuffix: 'student-status',
-      ephemeral: ephemeral,
-      username: prefilledUsername,
-      overrideRedirectUri: overrideRedirectUri,
-    );
-  }
-
   // DataManagement
   // ////////////////////////////////////////////////////////
   // WalletAndPayment
