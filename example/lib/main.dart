@@ -41,7 +41,6 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
   String paymentMethodsPageResultText = '';
   String driversLicenseResultText = '';
   String photoUploadResultText = '';
-  String studentStatusResultText = '';
 
   BehaviorSubject<String?> userName = BehaviorSubject.seeded(null);
   BehaviorSubject<String?> userId = BehaviorSubject.seeded(null);
@@ -123,11 +122,6 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   child: const Text('Open Photo Upload'),
                 ),
                 Text(photoUploadResultText),
-                ElevatedButton(
-                  onPressed: _openStudentStatusPage,
-                  child: const Text('Student Status'),
-                ),
-                Text(studentStatusResultText),
                 Container(
                   color: Colors.grey,
                   padding: const EdgeInsets.all(10),
@@ -164,7 +158,8 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                         onChanged: (text) => userId.add(text),
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          hintText: 'User Id (may be random value)',
+                          hintText: 'User Id, must be the correct id '
+                              'corresponding to the user name',
                         ),
                         keyboardType: TextInputType.text,
                         autofocus: true,
@@ -252,10 +247,10 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
 
     final result = await mLogin.openDriverLicenseVerification(
       ephemeral: ephemeral,
-      idVerificationRedirectUri: 'k.de.swm.login.app:/oauth2redirect/example',
     );
     setState(() {
-      driversLicenseResultText = 'Profile was shown, result: $result';
+      driversLicenseResultText =
+          'Drivers license was verified, result: $result';
     });
   }
 
@@ -269,19 +264,6 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     );
     setState(() {
       photoUploadResultText = 'Photo upload was shown, result: $result';
-    });
-  }
-
-  Future<void> _openStudentStatusPage() async {
-    setState(() {
-      studentStatusResultText = 'Opening Student status page...';
-    });
-
-    final result = await mLogin.openStudentStatus(
-      ephemeral: ephemeral,
-    );
-    setState(() {
-      studentStatusResultText = 'Student status was shown, result: $result';
     });
   }
 }

@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - m_login_sdk (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - m_login_sdk (from `.symlinks/plugins/m_login_sdk/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  m_login_sdk:
+    :path: ".symlinks/plugins/m_login_sdk/ios"
+
+SPEC CHECKSUMS:
+  Flutter: e0871f40cf51350855a761d2e70bf5af5b9b5de7
+  m_login_sdk: 8e7faa5034b71fbb0551a5ef9711b7dde0ebecca
+
+PODFILE CHECKSUM: c4c93c5f6502fe2754f48404d3594bf779584011
+
+COCOAPODS: 1.14.3
