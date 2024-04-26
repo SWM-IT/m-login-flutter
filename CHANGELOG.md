@@ -1,12 +1,13 @@
-## Next release - (TBD)
+## [1.0.0] - (26th April 2024)
 
-* Removed parameter payeeId from functions openGrantSepaMandatePage and
-  openPaymentMethodsOverviewPage
-* Removed parameter 'idVerificationRedirectUri' from MLogin constructor,
-  function 'openDriverLicenseVerification' uses parameter 'redirectUri' as all other functions.
-* Added new function 'openPhotoUpload'
+* Breaking changes:
+    * Removed parameter payeeId from functions openGrantSepaMandatePage and
+      openPaymentMethodsOverviewPage
+    * Removed parameter 'idVerificationRedirectUri' from MLogin constructor,
+      function 'openDriverLicenseVerification' uses parameter 'redirectUri' as all other functions.
 * Added parameter 'overrideRedirectUri' to functions where applicable,
   to override general redirect uri.
+* Added new function 'openPhotoUpload'
 
 ### Login button update:
 
@@ -14,8 +15,9 @@ The Login button received a design overhaul. It now has a modern look and more c
 options.
 
 #### Breaking changes
+
 * The `MLoginButtonThemed` and `MLoginButtonWhite` have been removed.
-  Now there is only one `MLoginButton` and the styling and other features can be controlled by 
+  Now there is only one `MLoginButton` and the styling and other features can be controlled by
   passing an `MLoginButtonData` object.
   You should use `MLoginButtonData(style: MLoginButtonStyle.blue)` in light mode and
   `MLoginButtonData(style: MLoginButtonStyle.white)` in dark mode.
@@ -27,7 +29,7 @@ options.
 
 #### New features
 
-* There are new configuration features for the shape and size of the button. For details, see the 
+* There are new configuration features for the shape and size of the button. For details, see the
   "Button" section in the readme.
 
 ## [0.8.0] - (27th March 2023)
