@@ -115,24 +115,16 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   child: const Text('Drivers License Verification'),
                 ),
                 Text(driversLicenseResultText),
-                ElevatedButton(
-                  onPressed: _openPaymentMethodsPage,
-                  child: const Text('Payment Methods Page'),
-                ),
-                Text(paymentMethodsPageResultText),
+
                 ElevatedButton(
                   onPressed: _openPhotoUpload,
                   child: const Text('Open Photo Upload'),
                 ),
                 Text(photoUploadResultText),
 
-                Container(
-                  color: Colors.grey,
-                  padding: const EdgeInsets.all(10),
-                  child: MLoginButtonWhite(
-                    text: 'Payment Methods Page',
-                    onPressed: _openPaymentMethodsPage,
-                  ),
+                ElevatedButton(
+                  onPressed: _openPaymentMethodsPage,
+                  child: const Text('Payment Methods Page'),
                 ),
                 Text(paymentMethodsPageResultText),
                 Padding(
