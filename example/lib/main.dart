@@ -42,6 +42,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
   String paymentMethodsPageResultText = '';
   String driversLicenseResultText = '';
   String photoUploadResultText = '';
+  String studentStatusResultText = '';
 
   BehaviorSubject<String?> userName = BehaviorSubject.seeded(null);
   BehaviorSubject<String?> userId = BehaviorSubject.seeded(null);
@@ -125,6 +126,11 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   child: const Text('Payment Methods Page'),
                 ),
                 Text(paymentMethodsPageResultText),
+                ElevatedButton(
+                  onPressed: _openStudentStatusPage,
+                  child: const Text('Student Status'),
+                ),
+                Text(studentStatusResultText),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -260,6 +266,19 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     );
     setState(() {
       photoUploadResultText = 'Photo upload was shown, result: $result';
+    });
+  }
+
+  Future<void> _openStudentStatusPage() async {
+    setState(() {
+      studentStatusResultText = 'Opening Student status page...';
+    });
+
+    final result = await mLogin.openStudentStatus(
+      ephemeral: ephemeral,
+    );
+    setState(() {
+      studentStatusResultText = 'Student status was shown, result: $result';
     });
   }
 }
