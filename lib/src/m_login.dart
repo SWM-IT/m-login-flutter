@@ -205,10 +205,6 @@ class MLogin {
   /// logged in user of the calling app to ensure that the profile page is shown
   /// for the correct user.
   ///
-  /// [idVerificationRedirectUri] defines where the (external)
-  /// driver license verification service (e.g. IDNow) should redirect to
-  /// after a successful verification step.
-  ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
   /// the iOS browser, or the back button on Android). This does not infer any
@@ -216,17 +212,14 @@ class MLogin {
   ///
   Future<bool> openDriverLicenseVerification({
     bool ephemeral = false,
-    required String idVerificationRedirectUri,
+    String? overrideRedirectUri,
   }) {
     return openDataPage(
       this,
-      portalUriSuffix: 'driver-licence-direct-verification',
-      extraParams: {
-        'id_verification_client_id': clientId,
-        'id_verification_redirect_uri': idVerificationRedirectUri,
-      },
+      portalUriSuffix: 'verifications/driver_license/start',
       ephemeral: ephemeral,
       username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
     );
   }
 
@@ -245,28 +238,7 @@ class MLogin {
   }) {
     return openDataPage(
       this,
-      portalUriSuffix: 'portrait',
-      ephemeral: ephemeral,
-      username: prefilledUsername,
-      overrideRedirectUri: overrideRedirectUri,
-    );
-  }
-
-  /// This function is used to authorize users for offers which are only
-  /// eligible for students, e.g. discounted tickets.
-  /// Shows a list of participating universities and colleges, which are
-  /// internally using the Shibboleth authentication.
-  /// User selects a university or college and is forwarded to its login.
-  ///
-  /// After successfully logging in, returns [true] and the user is
-  /// validated as a student. Returns [false] otherwise.
-  Future<bool> openStudentStatus({
-    bool ephemeral = false,
-    String? overrideRedirectUri,
-  }) {
-    return openDataPage(
-      this,
-      portalUriSuffix: 'student-status',
+      portalUriSuffix: 'verification/photo/start',
       ephemeral: ephemeral,
       username: prefilledUsername,
       overrideRedirectUri: overrideRedirectUri,

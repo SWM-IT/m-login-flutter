@@ -42,7 +42,6 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
   String paymentMethodsPageResultText = '';
   String driversLicenseResultText = '';
   String photoUploadResultText = '';
-  String studentStatusResultText = '';
 
   BehaviorSubject<String?> userName = BehaviorSubject.seeded(null);
   BehaviorSubject<String?> userId = BehaviorSubject.seeded(null);
@@ -117,27 +116,23 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                 ),
                 Text(driversLicenseResultText),
                 ElevatedButton(
-                  onPressed: _openPaymentMethodsPage,
-                  child: const Text('Payment Methods Page'),
-                ),
-                Text(paymentMethodsPageResultText),
-                ElevatedButton(
                   onPressed: _openPhotoUpload,
                   child: const Text('Open Photo Upload'),
                 ),
                 Text(photoUploadResultText),
                 ElevatedButton(
-                  onPressed: _openStudentStatusPage,
-                  child: const Text('Student Status'),
+                  onPressed: _openPaymentMethodsPage,
+                  child: const Text('Payment Methods Page'),
                 ),
-                Text(studentStatusResultText),
+                Text(paymentMethodsPageResultText),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
                       const Text(
                         'To test prefilled user name function, login with valid account, '
-                        'enter user name and random user id and open service page (e.g. Profile Page)',
+                        'enter user name and correct user id corresponding to the user name,'
+                        'and open service page (e.g. Profile Page)',
                       ),
                       const SizedBox(
                         height: 16,
@@ -158,7 +153,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                         onChanged: (text) => userId.add(text),
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          hintText: 'User Id (may be random value)',
+                          hintText: 'User Id',
                         ),
                         keyboardType: TextInputType.text,
                         autofocus: true,
@@ -248,10 +243,10 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
 
     final result = await mLogin.openDriverLicenseVerification(
       ephemeral: ephemeral,
-      idVerificationRedirectUri: 'k.de.swm.login.app:/oauth2redirect/example',
     );
     setState(() {
-      driversLicenseResultText = 'Profile was shown, result: $result';
+      driversLicenseResultText =
+          'Drivers license was verified, result: $result';
     });
   }
 
@@ -265,19 +260,6 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     );
     setState(() {
       photoUploadResultText = 'Photo upload was shown, result: $result';
-    });
-  }
-
-  Future<void> _openStudentStatusPage() async {
-    setState(() {
-      studentStatusResultText = 'Opening Student status page...';
-    });
-
-    final result = await mLogin.openStudentStatus(
-      ephemeral: ephemeral,
-    );
-    setState(() {
-      studentStatusResultText = 'Student status was shown, result: $result';
     });
   }
 }
