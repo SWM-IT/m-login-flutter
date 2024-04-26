@@ -115,13 +115,11 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   child: const Text('Drivers License Verification'),
                 ),
                 Text(driversLicenseResultText),
-
                 ElevatedButton(
                   onPressed: _openPhotoUpload,
                   child: const Text('Open Photo Upload'),
                 ),
                 Text(photoUploadResultText),
-
                 ElevatedButton(
                   onPressed: _openPaymentMethodsPage,
                   child: const Text('Payment Methods Page'),
@@ -133,7 +131,8 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                     children: [
                       const Text(
                         'To test prefilled user name function, login with valid account, '
-                        'enter user name and random user id and open service page (e.g. Profile Page)',
+                        'enter user name and correct user id corresponding to the user name,'
+                        'and open service page (e.g. Profile Page)',
                       ),
                       const SizedBox(
                         height: 16,
@@ -154,8 +153,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                         onChanged: (text) => userId.add(text),
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          hintText: 'User Id, must be the correct id '
-                              'corresponding to the user name',
+                          hintText: 'User Id',
                         ),
                         keyboardType: TextInputType.text,
                         autofocus: true,
