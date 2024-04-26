@@ -8,6 +8,28 @@
 * Added parameter 'overrideRedirectUri' to functions where applicable,
   to override general redirect uri.
 
+### Login button update:
+
+The Login button received a design overhaul. It now has a modern look and more configuration
+options.
+
+#### Breaking changes
+* The `MLoginButtonThemed` and `MLoginButtonWhite` have been removed.
+  Now there is only one `MLoginButton` and the styling and other features can be controlled by 
+  passing an `MLoginButtonData` object.
+  You should use `MLoginButtonData(style: MLoginButtonStyle.blue)` in light mode and
+  `MLoginButtonData(style: MLoginButtonStyle.white)` in dark mode.
+* The text of the button can not be configured anymore. It is always "Sign in with M-Login".
+  The language (German or English) can be controlled by passing the app locale.
+* Padding cannot be configured anymore. Simply wrap the button in a `Padding` widget.
+* `isEnabled` has moved from the button itself to `MLoginButtonData`.
+* A `semanticsLabel` cannot be passed anymore, the semantics are always "Sign in with M-Login".
+
+#### New features
+
+* There are new configuration features for the shape and size of the button. For details, see the 
+  "Button" section in the readme.
+
 ## [0.8.0] - (27th March 2023)
 
 * Introduced option to launch a customer initiated transaction (CIT) web flow
@@ -41,7 +63,7 @@ future!
 
 ## [0.4.0] - (25nd February 2022)
 
-* Added optional "ephemeral" parameter to specifiy whether ephemeral sessions (previous standard!)
+* Added optional "ephemeral" parameter to specify whether ephemeral sessions (previous standard!)
   should be used or not. **NOTE**: Default behaviour was changed to `ephemeral = false`!
 * Fixed issue where Login attempts would appear as "canceled" on Firefox
 * Added Toast warning message if no browser is installed, added error code to inform about missing

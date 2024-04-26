@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:m_login_sdk/m_login_sdk.dart';
+import 'package:m_login_sdk_example/configurable_button.dart';
 import 'package:rxdart/rxdart.dart';
 
 void main() {
@@ -97,10 +98,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                     ),
                   ],
                 ),
-                MLoginButton(
-                  text: 'Mit M-Login anmelden',
-                  onPressed: _startLogin,
-                ),
+                MLoginButton(onPressed: _startLogin),
                 Text(loginResultText),
                 ElevatedButton(
                   onPressed: _startSignUp,
@@ -122,13 +120,9 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   child: const Text('Open Photo Upload'),
                 ),
                 Text(photoUploadResultText),
-                Container(
-                  color: Colors.grey,
-                  padding: const EdgeInsets.all(10),
-                  child: MLoginButtonWhite(
-                    text: 'Payment Methods Page',
-                    onPressed: _openPaymentMethodsPage,
-                  ),
+                ElevatedButton(
+                  onPressed: _openPaymentMethodsPage,
+                  child: const Text('Payment Methods Page'),
                 ),
                 Text(paymentMethodsPageResultText),
                 Padding(
@@ -137,7 +131,8 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                     children: [
                       const Text(
                         'To test prefilled user name function, login with valid account, '
-                        'enter user name and random user id and open service page (e.g. Profile Page)',
+                        'enter user name and correct user id corresponding to the user name,'
+                        'and open service page (e.g. Profile Page)',
                       ),
                       const SizedBox(
                         height: 16,
@@ -158,8 +153,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                         onChanged: (text) => userId.add(text),
                         decoration: const InputDecoration(
                           border: OutlineInputBorder(),
-                          hintText: 'User Id, must be the correct id '
-                              'corresponding to the user name',
+                          hintText: 'User Id',
                         ),
                         keyboardType: TextInputType.text,
                         autofocus: true,
@@ -167,6 +161,8 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                     ],
                   ),
                 ),
+                const SizedBox(height: 16),
+                const ConfigurableButton(),
               ],
             ),
           ),
