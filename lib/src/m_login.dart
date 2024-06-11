@@ -259,7 +259,12 @@ class MLogin {
   }) {
     return openDataPage(
       this,
-      portalUriSuffix: 'student-status',
+      portalUriSuffix: 'verification/student/start',
+      ephemeral: ephemeral,
+      username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
+    );
+  }
       ephemeral: ephemeral,
       username: prefilledUsername,
       overrideRedirectUri: overrideRedirectUri,
