@@ -59,7 +59,7 @@ flutter pub add m_login_sdk
 This will add a dependency in your `pubspec.yml` file that looks like this:
 
 ```yaml
-  m_login_sdk: ^0.7.0
+  m_login_sdk: ^1.1.0
 ```
 
 ## SetUp
@@ -186,14 +186,14 @@ With the `MLoginButtonData` various properties of the button can be configured (
 1. `style`: `MLoginButtonStyle.blue` (default, button appears blue) or `MLoginButtonStyle.white`
    (button appears white, should be used for the dark theme of the app).
 2. `shape`:  `MLoginButtonShape.roundedRectangle` (default) or `MLoginButtonShape.pill`.
-3. `cornerRadius`: Corner radius of the button (default: 4), will be ignored if pill is set as 
+3. `cornerRadius`: Corner radius of the button (default: 4), will be ignored if pill is set as
    shape.
 4. `enabled`: `true` (default) or `false` (button appears greyed out and is disabled).
 5. `fillWidth`: `true`(default, button fills available width) or `false` (button is only as wide as
    necessary).
 6. `locale`: The locale that defines the language of the button. Currently only German and English
    are supported. If no locale is passed, German is used. If a locale is passed and the language of
-   this locale is German, German is used. If a locale is passed and the language of this locale is 
+   this locale is German, German is used. If a locale is passed and the language of this locale is
    _not_ German, English is used.
 
 ## Example

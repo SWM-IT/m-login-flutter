@@ -8,6 +8,7 @@ Future<bool> openDataPage(
   required bool ephemeral,
   String? username,
   String? overrideRedirectUri,
+  String? anchor,
 }) async {
   final path = '${mLogin.config.getHost()}/portal/mobilesdk/$portalUriSuffix';
 
@@ -31,7 +32,7 @@ Future<bool> openDataPage(
       .map((entry) => '${entry.key}=${Uri.encodeComponent(entry.value)}')
       .join('&');
 
-  final uri = '$path?$queryParamsString';
+  final uri = '$path?$queryParamsString${anchor != null ? '#$anchor' : ''}';
 
   try {
     final result = await BrowserFlow.authenticate(

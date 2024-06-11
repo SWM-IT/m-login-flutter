@@ -8,6 +8,7 @@ import 'package:m_login_sdk/src/m_login_cit_result.dart';
 import 'package:m_login_sdk/src/m_login_config.dart';
 import 'package:m_login_sdk/src/m_login_log.dart';
 import 'package:m_login_sdk/src/m_login_result.dart';
+import 'package:m_login_sdk/src/m_login_verification_type.dart';
 
 ///
 /// Central access point to the MLoginSDK. All functionality is triggered via
@@ -265,9 +266,26 @@ class MLogin {
       overrideRedirectUri: overrideRedirectUri,
     );
   }
+
+  /// This function is used to display all verifications the user has completed
+  /// in her M-Login account.
+  /// By supplying a [MLoginVerificationType], the user can be guided to the
+  /// anchor in the page where this specific verification is shown.
+  ///
+  /// After successfully logging in, returns [true] and the user is
+  /// validated as a student. Returns [false] otherwise.
+  Future<bool> openVerifications({
+    bool ephemeral = false,
+    String? overrideRedirectUri,
+    MLoginVerificationType? verificationType,
+  }) {
+    return openDataPage(
+      this,
+      portalUriSuffix: 'verifications',
       ephemeral: ephemeral,
       username: prefilledUsername,
       overrideRedirectUri: overrideRedirectUri,
+      anchor: verificationType?.anchor,
     );
   }
 

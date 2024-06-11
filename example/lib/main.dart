@@ -43,6 +43,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
   String driversLicenseResultText = '';
   String photoUploadResultText = '';
   String studentStatusResultText = '';
+  String verificationsResultText = '';
 
   BehaviorSubject<String?> userName = BehaviorSubject.seeded(null);
   BehaviorSubject<String?> userId = BehaviorSubject.seeded(null);
@@ -131,6 +132,11 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   child: const Text('Student Status'),
                 ),
                 Text(studentStatusResultText),
+                ElevatedButton(
+                  onPressed: _openVerificationsPage,
+                  child: const Text('Verifications'),
+                ),
+                Text(verificationsResultText),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -279,6 +285,20 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     );
     setState(() {
       studentStatusResultText = 'Student status was shown, result: $result';
+    });
+  }
+
+  Future<void> _openVerificationsPage() async {
+    setState(() {
+      verificationsResultText = 'Opening verifications page...';
+    });
+
+    final result = await mLogin.openVerifications(
+      ephemeral: ephemeral,
+      verificationType: const PhotoVerification(),
+    );
+    setState(() {
+      verificationsResultText = 'Verifications page was shown, result: $result';
     });
   }
 }

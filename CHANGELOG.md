@@ -1,6 +1,7 @@
-## TBD
+## [1.1.0] - (TBD)
 
-* 
+* Added new function 'openStudentStatus'
+* Added new function 'openVerifications'
 
 ## [1.0.0] - (26th April 2024)
 
