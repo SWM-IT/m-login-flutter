@@ -271,6 +271,7 @@ class MLogin {
   /// in her M-Login account.
   /// By supplying a [MLoginVerificationType], the user can be guided to the
   /// anchor in the page where this specific verification is shown.
+  /// If omitted, the user will see the top of the page.
   ///
   /// After successfully logging in, returns [true] and the user is
   /// validated as a student. Returns [false] otherwise.
