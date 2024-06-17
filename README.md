@@ -309,6 +309,23 @@ the offered web experience; setting your own verification data is not yet possib
 Similar to the [Profile]: The user can also be sent directly to a portal page to edit her payment
 data. For that, call `openPaymentMethodsOverviewPage`
 
+#### Photo Upload
+
+The user can upload a portrait photo which can be used for services like annual passes.
+For that, call `openPhotoUpload`
+
+#### Student Status Verification
+
+The user can verify her student status, to get discounts on certain services, e.g. public transport.
+For that, call `openStudentStatus`
+
+#### Verifications
+
+The user can view and modify her verifications (driver's license, student status, portrait photo).
+By passing a `MLoginVerificationType`, the user can open the page at a specific verification.
+If the parameter is not provided, the user will start at the top of the verifications page.
+For that, call `openVerifications`
+
 #### Recover from checkout error
 
 In case a payment "checkout" fails, i.e. the transaction can not be completed, the M-Login servers
