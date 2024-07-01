@@ -1,4 +1,4 @@
-## [1.1.0] - (TBD)
+## [1.1.0] - (1st July 2024)
 
 * Added new function 'openStudentStatus'
 * Added new function 'openVerifications'
