@@ -290,6 +290,58 @@ class MLogin {
     );
   }
 
+  /// This function is used to give an overview of the children the user
+  /// has added to her M-Login account.
+  ///
+  /// On this page, new children can be added. Existing children are displayed
+  /// and their details can be viewed and edited via links to the respective
+  /// detail pages.
+  /// For direct entry on the detail page, use [openChildDetailPage].
+  ///
+  /// Returns [true] in case the user finishes the page using the `done` button,
+  /// [false] in any other case (e.g., the user pressed the "cancel" button in
+  /// the iOS browser, or the back button on Android). This does not infer any
+  /// data change or validation and can safely be ignored.
+  ///
+  Future<bool> openFamilyOverviewPage({
+    bool ephemeral = false,
+    String? overrideRedirectUri,
+  }) {
+    return openDataPage(
+      this,
+      portalUriSuffix: 'family',
+      ephemeral: ephemeral,
+      username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
+    );
+  }
+
+  /// This function is used to open the detail page of a child
+  /// with the given [childId] the user has added to her M-Login account.
+  ///
+  /// On this page, the profile data of this child can be viewed and edited.
+  /// Additionally, a photo of the child can be uploaded.
+  /// It is also possible to delete the child from the account.
+  ///
+  /// Returns [true] in case the user finishes the page using the `done` button,
+  /// [false] in any other case (e.g., the user pressed the "cancel" button in
+  /// the iOS browser, or the back button on Android). This does not infer any
+  /// data change or validation and can safely be ignored.
+  ///
+  Future<bool> openChildDetailPage({
+    bool ephemeral = false,
+    String? overrideRedirectUri,
+    required String childId,
+  }) {
+    return openDataPage(
+      this,
+      portalUriSuffix: 'family/child-profile-detail/$childId',
+      ephemeral: ephemeral,
+      username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
+    );
+  }
+
   // DataManagement
   // ////////////////////////////////////////////////////////
   // WalletAndPayment
