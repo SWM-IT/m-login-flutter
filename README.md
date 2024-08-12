@@ -326,6 +326,13 @@ By passing a `MLoginVerificationType`, the user can open the page at a specific 
 If the parameter is not provided, the user will start at the top of the verifications page.
 For that, call `openVerifications`
 
+#### Family
+
+The user can add her family members to her M-Login account. Existing family members can be edited,
+deleted and photos can be uploaded for them. For the overview and to add new members,
+call `openFamilyOverview`. To directly view the detail page of a child, call `openChildDetailPage`
+with the `childId` of the child you want to display.
+
 #### Recover from checkout error
 
 In case a payment "checkout" fails, i.e. the transaction can not be completed, the M-Login servers
