@@ -245,6 +245,7 @@ class MLogin {
     );
   }
 
+  ///
   /// This function is used to authorize users for offers which are only
   /// eligible for students, e.g. discounted tickets.
   /// Shows a list of participating universities and colleges, which are
@@ -253,6 +254,7 @@ class MLogin {
   ///
   /// After successfully logging in, returns [true] and the user is
   /// validated as a student. Returns [false] otherwise.
+  ///
   Future<bool> openStudentStatus({
     bool ephemeral = false,
     String? overrideRedirectUri,
@@ -266,6 +268,7 @@ class MLogin {
     );
   }
 
+  ///
   /// This function is used to display all verifications the user has completed
   /// in her M-Login account.
   /// By supplying a [MLoginVerificationType], the user can be guided to the
@@ -293,6 +296,7 @@ class MLogin {
     );
   }
 
+  ///
   /// This function is used to give an overview of the children the user
   /// has added to her M-Login account.
   ///
@@ -320,6 +324,7 @@ class MLogin {
     );
   }
 
+  ///
   /// This function is used to open the detail page of a child
   /// with the given [childId] the user has added to her M-Login account.
   ///
