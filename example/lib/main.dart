@@ -44,9 +44,12 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
   String photoUploadResultText = '';
   String studentStatusResultText = '';
   String verificationsResultText = '';
+  String familyOverviewResultText = '';
+  String childDetailResultText = '';
 
   BehaviorSubject<String?> userName = BehaviorSubject.seeded(null);
   BehaviorSubject<String?> userId = BehaviorSubject.seeded(null);
+  String? childId;
 
   bool ephemeral = false;
 
@@ -137,6 +140,25 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                   child: const Text('Verifications'),
                 ),
                 Text(verificationsResultText),
+                ElevatedButton(
+                  onPressed: _openFamilyOverviewPage,
+                  child: const Text('Family Overview'),
+                ),
+                Text(familyOverviewResultText),
+                ElevatedButton(
+                  onPressed: _openChildDetailPage,
+                  child: const Text('Child Detail Page'),
+                ),
+                Text(childDetailResultText),
+                TextFormField(
+                  onChanged: (text) => childId = text,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    hintText: 'Child Id (for child detail page)',
+                  ),
+                  keyboardType: TextInputType.text,
+                  autofocus: true,
+                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -299,6 +321,34 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     );
     setState(() {
       verificationsResultText = 'Verifications page was shown, result: $result';
+    });
+  }
+
+  Future<void> _openFamilyOverviewPage() async {
+    setState(() {
+      familyOverviewResultText = 'Opening family overview page...';
+    });
+
+    final result = await mLogin.openFamilyOverviewPage(
+      ephemeral: ephemeral,
+    );
+    setState(() {
+      familyOverviewResultText =
+          'Family overview page was shown, result: $result';
+    });
+  }
+
+  Future<void> _openChildDetailPage() async {
+    setState(() {
+      childDetailResultText = 'Opening child detail page...';
+    });
+
+    final result = await mLogin.openChildDetailPage(
+      childId: childId ?? '',
+      ephemeral: ephemeral,
+    );
+    setState(() {
+      childDetailResultText = 'Child detail page was shown, result: $result';
     });
   }
 }

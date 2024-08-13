@@ -1,3 +1,8 @@
+## [1.2.0] - (###)
+
+* Added new function 'openFamilyOverviewPage'
+* Added new function 'openChildDetailPage'
+
 ## [1.1.0] - (1st July 2024)
 
 * Added new function 'openStudentStatus'

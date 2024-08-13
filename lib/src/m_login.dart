@@ -176,11 +176,9 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android).
-  ///
-  /// Note that this does not contain any information whether data was changed
-  /// or validated. It's safe to ignore the returned value and just assume data
-  /// was changed.
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
   ///
   Future<bool> openPortalOverview({
     bool ephemeral = false,
@@ -208,8 +206,9 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android). This does not infer any
-  /// data change or validation and can safely be ignored.
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
   ///
   Future<bool> openDriverLicenseVerification({
     bool ephemeral = false,
@@ -246,6 +245,7 @@ class MLogin {
     );
   }
 
+  ///
   /// This function is used to authorize users for offers which are only
   /// eligible for students, e.g. discounted tickets.
   /// Shows a list of participating universities and colleges, which are
@@ -254,6 +254,7 @@ class MLogin {
   ///
   /// After successfully logging in, returns [true] and the user is
   /// validated as a student. Returns [false] otherwise.
+  ///
   Future<bool> openStudentStatus({
     bool ephemeral = false,
     String? overrideRedirectUri,
@@ -267,14 +268,19 @@ class MLogin {
     );
   }
 
+  ///
   /// This function is used to display all verifications the user has completed
   /// in her M-Login account.
   /// By supplying a [MLoginVerificationType], the user can be guided to the
   /// anchor in the page where this specific verification is shown.
   /// If omitted, the user will see the top of the page.
   ///
-  /// After successfully logging in, returns [true] and the user is
-  /// validated as a student. Returns [false] otherwise.
+  /// Returns [true] in case the user finishes the page using the `done` button,
+  /// [false] in any other case (e.g., the user pressed the "cancel" button in
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
+  ///
   Future<bool> openVerifications({
     bool ephemeral = false,
     String? overrideRedirectUri,
@@ -287,6 +293,62 @@ class MLogin {
       username: prefilledUsername,
       overrideRedirectUri: overrideRedirectUri,
       anchor: verificationType?.anchor,
+    );
+  }
+
+  ///
+  /// This function is used to give an overview of the children the user
+  /// has added to her M-Login account.
+  ///
+  /// On this page, new children can be added. Existing children are displayed
+  /// and their details can be viewed and edited via links to the respective
+  /// detail pages.
+  /// For direct entry on the detail page, use [openChildDetailPage].
+  ///
+  /// Returns [true] in case the user finishes the page using the `done` button,
+  /// [false] in any other case (e.g., the user pressed the "cancel" button in
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
+  ///
+  Future<bool> openFamilyOverviewPage({
+    bool ephemeral = false,
+    String? overrideRedirectUri,
+  }) {
+    return openDataPage(
+      this,
+      portalUriSuffix: 'family',
+      ephemeral: ephemeral,
+      username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
+    );
+  }
+
+  ///
+  /// This function is used to open the detail page of a child
+  /// with the given [childId] the user has added to her M-Login account.
+  ///
+  /// On this page, the profile data of this child can be viewed and edited.
+  /// Additionally, a photo of the child can be uploaded.
+  /// It is also possible to delete the child from the account.
+  ///
+  /// Returns [true] in case the user finishes the page using the `done` button,
+  /// [false] in any other case (e.g., the user pressed the "cancel" button in
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
+  ///
+  Future<bool> openChildDetailPage({
+    bool ephemeral = false,
+    String? overrideRedirectUri,
+    required String childId,
+  }) {
+    return openDataPage(
+      this,
+      portalUriSuffix: 'family/child-profile-detail/$childId',
+      ephemeral: ephemeral,
+      username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
     );
   }
 
@@ -314,11 +376,9 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android)
-  ///
-  /// Note that this does not contain any information whether data was changed
-  /// or validated. It's safe to ignore the returned value and just assume data
-  /// was changed.
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
   ///
   Future<bool> openGrantSepaMandatePage(
     String methodId, {
@@ -343,11 +403,9 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android)
-  ///
-  /// Note that this does not contain any information whether data was changed
-  /// or validated. It's safe to ignore the returned value and just assume data
-  /// was changed.
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
   ///
   Future<bool> openPaymentMethodsOverviewPage({
     bool ephemeral = false,
@@ -392,7 +450,9 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android)
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
   ///
   Future<bool> openPayAuthorizationErrorRecovery(
     String recoverableErrorPayload, {
