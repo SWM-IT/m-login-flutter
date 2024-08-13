@@ -176,11 +176,9 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android).
-  ///
-  /// Note that this does not contain any information whether data was changed
-  /// or validated. It's safe to ignore the returned value and just assume data
-  /// was changed.
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
   ///
   Future<bool> openPortalOverview({
     bool ephemeral = false,
@@ -208,8 +206,9 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android). This does not infer any
-  /// data change or validation and can safely be ignored.
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
   ///
   Future<bool> openDriverLicenseVerification({
     bool ephemeral = false,
@@ -273,8 +272,12 @@ class MLogin {
   /// anchor in the page where this specific verification is shown.
   /// If omitted, the user will see the top of the page.
   ///
-  /// After successfully logging in, returns [true] and the user is
-  /// validated as a student. Returns [false] otherwise.
+  /// Returns [true] in case the user finishes the page using the `done` button,
+  /// [false] in any other case (e.g., the user pressed the "cancel" button in
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
+  ///
   Future<bool> openVerifications({
     bool ephemeral = false,
     String? overrideRedirectUri,
@@ -300,8 +303,9 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android). This does not infer any
-  /// data change or validation and can safely be ignored.
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
   ///
   Future<bool> openFamilyOverviewPage({
     bool ephemeral = false,
@@ -325,8 +329,9 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android). This does not infer any
-  /// data change or validation and can safely be ignored.
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
   ///
   Future<bool> openChildDetailPage({
     bool ephemeral = false,
@@ -366,11 +371,9 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android)
-  ///
-  /// Note that this does not contain any information whether data was changed
-  /// or validated. It's safe to ignore the returned value and just assume data
-  /// was changed.
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
   ///
   Future<bool> openGrantSepaMandatePage(
     String methodId, {
@@ -395,11 +398,9 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android)
-  ///
-  /// Note that this does not contain any information whether data was changed
-  /// or validated. It's safe to ignore the returned value and just assume data
-  /// was changed.
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
   ///
   Future<bool> openPaymentMethodsOverviewPage({
     bool ephemeral = false,
@@ -444,7 +445,9 @@ class MLogin {
   ///
   /// Returns [true] in case the user finishes the page using the `done` button,
   /// [false] in any other case (e.g., the user pressed the "cancel" button in
-  /// the iOS browser, or the back button on Android)
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
   ///
   Future<bool> openPayAuthorizationErrorRecovery(
     String recoverableErrorPayload, {
