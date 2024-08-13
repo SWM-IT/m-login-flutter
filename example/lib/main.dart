@@ -49,7 +49,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
 
   BehaviorSubject<String?> userName = BehaviorSubject.seeded(null);
   BehaviorSubject<String?> userId = BehaviorSubject.seeded(null);
-  BehaviorSubject<String?> childId = BehaviorSubject.seeded(null);
+  String? childId;
 
   bool ephemeral = false;
 
@@ -151,7 +151,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                 ),
                 Text(childDetailResultText),
                 TextFormField(
-                  onChanged: (text) => childId.add(text),
+                  onChanged: (text) => childId = text,
                   decoration: const InputDecoration(
                     border: OutlineInputBorder(),
                     hintText: 'Child Id (for child detail page)',
@@ -344,7 +344,7 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
     });
 
     final result = await mLogin.openChildDetailPage(
-      childId: childId.valueOrNull ?? '',
+      childId: childId ?? '',
       ephemeral: ephemeral,
     );
     setState(() {
