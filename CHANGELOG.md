@@ -1,4 +1,4 @@
-## [1.2.0] - (###)
+## [1.2.0] - (14th August 2024)
 
 * Added new function 'openFamilyOverviewPage'
 * Added new function 'openChildDetailPage'

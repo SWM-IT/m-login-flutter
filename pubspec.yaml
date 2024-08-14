@@ -3,7 +3,7 @@ description: Flutter-native SDK to simply access the M-Login identity- and user-
 repository: https://github.com/SWM-IT/m-login-flutter
 issue_tracker: https://github.com/SWM-IT/m-login-flutter/issues
 homepage: https://login.muenchen.de
-version: 1.1.0
+version: 1.2.0
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
