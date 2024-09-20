@@ -37,6 +37,10 @@ class MLoginButtonData {
   /// - If a locale is passed and the language is NOT 'de', English is used.
   final Locale locale;
 
+  /// The font family used for the button text. If not set, the default font
+  /// family is used.
+  final String? fontFamily;
+
   const MLoginButtonData({
     this.isEnabled = true,
     this.fillWidth = true,
@@ -44,5 +48,6 @@ class MLoginButtonData {
     this.shape = MLoginButtonShape.roundedRectangle,
     this.cornerRadius = 4,
     this.locale = const Locale.fromSubtags(languageCode: 'de'),
+    this.fontFamily,
   });
 }

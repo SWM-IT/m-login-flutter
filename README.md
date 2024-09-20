@@ -195,6 +195,8 @@ With the `MLoginButtonData` various properties of the button can be configured (
    are supported. If no locale is passed, German is used. If a locale is passed and the language of
    this locale is German, German is used. If a locale is passed and the language of this locale is
    _not_ German, English is used.
+7. `fontFamily`: The font family used for the button text. If no font family is passed, the default 
+   font will be used.
 
 ## Example
 

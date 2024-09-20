@@ -134,6 +134,7 @@ class _ButtonText extends StatelessWidget {
               : 'Sign in with M-Login',
           style: TextStyle(
             fontSize: 16,
+            fontFamily: data.fontFamily,
             height: 20 / 16,
             fontWeight: FontWeight.w500,
             color: data.style.textColor,
