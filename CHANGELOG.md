@@ -1,3 +1,7 @@
+## [1.3.0] - (TBD)
+
+* Support for custom font
+
 ## [1.2.0] - (14th August 2024)
 
 * Added new function 'openFamilyOverviewPage'
