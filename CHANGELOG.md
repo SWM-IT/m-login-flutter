@@ -1,4 +1,4 @@
-## [1.3.0] - (20th September 2024)
+## [1.3.0] - (TBD)
 
 * Support for custom font
 
