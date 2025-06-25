@@ -1,3 +1,8 @@
+## [1.4.0] - (### June 2025)
+
+* Replace deprecated urls
+* Add id card verification function
+
 ## [1.3.0] - (4th October 2024)
 
 * Support for custom font

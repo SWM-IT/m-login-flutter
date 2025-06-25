@@ -299,6 +299,13 @@ directly to a page where data can be changed.
 > __NOTE__: Make sure that you've set `loggedInMLoginUserId` in the `MLogin` object! Otherwise, edge
 > cases with diverging user sessions are possible! See documentation for the `MLogin` constructor.
 
+#### Id Card Verification
+
+In case your service requires your users to have a valid id card, you can use the offered
+`openIdCardVerification` call. If your user does not yet have her id card verified,
+this will directly open the corresponding flow in the M-Login portal. For this, you MUST go through
+the offered web experience; setting your own verification data is not yet possible.
+
 #### Driver License Verification
 
 In case your service requires your users to have a valid drivers license, you can use the offered

@@ -421,6 +421,36 @@ class MLogin {
   }
 
   ///
+  /// Opens the M-Login portal in a secure web browser environment, focused on
+  /// the id card verification page.
+  ///
+  /// Does not require previous Login. In case there is no valid login present
+  /// in the browser, the user will be prompted to log in again.
+  ///
+  /// It is strongly recommended to keep [loggedInMLoginUserId] in sync with the
+  /// logged in user of the calling app to ensure that the profile page is shown
+  /// for the correct user.
+  ///
+  /// Returns [true] in case the user finishes the page using the `done` button,
+  /// [false] in any other case (e.g., the user pressed the "cancel" button in
+  /// the iOS browser, or the back button on Android). Note that this
+  /// does not contain any information whether data was changed or validated.
+  /// It's safe to ignore the returned value and just assume data was changed.
+  ///
+  Future<bool> openIdCardVerification({
+    bool ephemeral = false,
+    String? overrideRedirectUri,
+  }) {
+    return openDataPage(
+      this,
+      portalUriSuffix: 'verification/idcard/start',
+      ephemeral: ephemeral,
+      username: prefilledUsername,
+      overrideRedirectUri: overrideRedirectUri,
+    );
+  }
+
+  ///
   /// Convenience function to open the browser on a page that prompts the user
   /// to recover from a payment authorization error that is marked as
   /// "recoverable" (see M-Login API specs)

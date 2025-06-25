@@ -74,7 +74,7 @@ String _makeRequestUri({
   required PkceCodeChallenge codeChallenge,
   bool sso = true,
 }) {
-  final host = '$baseHost/auth/oauth2/realms/root/realms/customers/authorize';
+  final host = '$baseHost/oauth2/authorize';
 
   var queryParams = <String, String>{};
   queryParams['client_id'] = clientId;
