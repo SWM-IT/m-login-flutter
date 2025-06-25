@@ -1,4 +1,4 @@
-## [1.4.0] - (### June 2025)
+## [1.4.0] - (25th June 2025)
 
 * Replace deprecated urls
 * Add id card verification function
