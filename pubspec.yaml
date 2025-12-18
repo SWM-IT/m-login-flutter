@@ -3,7 +3,7 @@ description: Flutter-native SDK to simply access the M-Login identity- and user-
 repository: https://github.com/SWM-IT/m-login-flutter
 issue_tracker: https://github.com/SWM-IT/m-login-flutter/issues
 homepage: https://login.muenchen.de
-version: 1.4.0
+version: 1.5.0
 
 environment:
   sdk: ">=3.0.0 <4.0.0"
@@ -14,8 +14,8 @@ dependencies:
     sdk: flutter
 
   # Needed to create PKCE challenges and verification codes
-  crypto: ^3.0.6
-  flutter_svg: ^2.0.17
+  crypto: ^3.0.7
+  flutter_svg: ^2.2.3
 
 dev_dependencies:
   flutter_test:
