@@ -1,3 +1,7 @@
+## [1.5.0] - (XXX XXX 2026)
+
+* Add optional locale parameter to MLogin constructor
+
 ## [1.4.0] - (25th June 2025)
 
 * Replace deprecated urls
