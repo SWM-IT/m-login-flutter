@@ -10,6 +10,8 @@ import 'package:m_login_sdk/src/m_login_log.dart';
 import 'package:m_login_sdk/src/m_login_result.dart';
 import 'package:m_login_sdk/src/m_login_verification_type.dart';
 
+import 'internal/m_login_locale.dart';
+
 ///
 /// Central access point to the MLoginSDK. All functionality is triggered via
 /// the calls defined in here.
@@ -58,6 +60,12 @@ class MLogin {
   /// a data page (like [openPortalOverview]) will display a new login mask
   /// with the [prefilledUsername] entered in the e-Mail input field.
   String? prefilledUsername;
+
+  /// Optional locale which can be set to enforce a specific language
+  /// for all requests. If it is omitted, M-Login decides the language itself.
+  /// It should be set when initializing the MLogin instance and changed
+  /// if the device or app language changes.
+  MLoginLocale? locale;
 
   final secureRandom = Random.secure();
 
@@ -108,6 +116,7 @@ class MLogin {
     required this.clientId,
     this.loggedInMLoginUserId,
     this.prefilledUsername,
+    this.locale,
   });
 
   // ////////////////////////////////////////////////////////
