@@ -192,6 +192,32 @@ class _ExampleLauncherPageState extends State<ExampleLauncherPage> {
                         keyboardType: TextInputType.text,
                         autofocus: true,
                       ),
+                      Row(
+                        children: [
+                          const Text('Locale'),
+                          RadioMenuButton<MLoginLocale?>(
+                            value: null,
+                            groupValue: mLogin.locale,
+                            onChanged: (MLoginLocale? locale) =>
+                                setState(() => mLogin.locale = locale),
+                            child: const Text('unset'),
+                          ),
+                          RadioMenuButton<MLoginLocale?>(
+                            value: MLoginLocale.de,
+                            groupValue: mLogin.locale,
+                            onChanged: (MLoginLocale? locale) =>
+                                setState(() => mLogin.locale = locale),
+                            child: const Text('de'),
+                          ),
+                          RadioMenuButton<MLoginLocale?>(
+                            value: MLoginLocale.en,
+                            groupValue: mLogin.locale,
+                            onChanged: (MLoginLocale? locale) =>
+                                setState(() => mLogin.locale = locale),
+                            child: const Text('en'),
+                          ),
+                        ],
+                      )
                     ],
                   ),
                 ),
