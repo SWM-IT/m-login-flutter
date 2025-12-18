@@ -10,7 +10,7 @@ import 'package:m_login_sdk/src/m_login_log.dart';
 import 'package:m_login_sdk/src/m_login_result.dart';
 import 'package:m_login_sdk/src/m_login_verification_type.dart';
 
-import 'internal/m_login_locale.dart';
+import 'm_login_locale.dart';
 
 ///
 /// Central access point to the MLoginSDK. All functionality is triggered via

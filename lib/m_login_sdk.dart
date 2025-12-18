@@ -6,6 +6,7 @@ export 'src/m_login_log.dart';
 export 'src/m_login_result.dart';
 export 'src/m_login_cit_result.dart';
 export 'src/m_login_verification_type.dart';
+export 'src/m_login_locale.dart';
 export 'src/ui_elements/m_login_button.dart';
 export 'src/ui_elements/m_login_button_data.dart';
 export 'src/ui_elements/m_login_button_style.dart';

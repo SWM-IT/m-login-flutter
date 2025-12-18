@@ -5,7 +5,7 @@ import 'package:m_login_sdk/src/internal/browser_flow.dart';
 import 'package:m_login_sdk/src/internal/pkce.dart';
 import 'package:m_login_sdk/src/internal/util.dart';
 
-import 'm_login_locale.dart';
+import '../m_login_locale.dart';
 
 Future<MLoginResult> runAuthentication(
   MLogin mLogin, {
