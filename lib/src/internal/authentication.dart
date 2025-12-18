@@ -5,6 +5,8 @@ import 'package:m_login_sdk/src/internal/browser_flow.dart';
 import 'package:m_login_sdk/src/internal/pkce.dart';
 import 'package:m_login_sdk/src/internal/util.dart';
 
+import 'm_login_locale.dart';
+
 Future<MLoginResult> runAuthentication(
   MLogin mLogin, {
   String? loginAction,
@@ -26,6 +28,7 @@ Future<MLoginResult> runAuthentication(
     state: state,
     codeChallenge: codeChallenge,
     scopes: scopes,
+    locale: mLogin.locale,
   );
 
   MLoginLog.info('Starting Login!');
@@ -73,6 +76,7 @@ String _makeRequestUri({
   required String state,
   required PkceCodeChallenge codeChallenge,
   bool sso = true,
+  MLoginLocale? locale,
 }) {
   final host = '$baseHost/oauth2/authorize';
 
@@ -92,6 +96,9 @@ String _makeRequestUri({
     queryParams['login_action'] = loginAction!;
   }
 
+  if (locale != null) {
+    queryParams['locale'] = locale.name;
+  }
   // later, once supported: 'locale' -> 'de_DE'
 
   if (!sso) {
