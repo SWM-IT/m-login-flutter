@@ -5,8 +5,6 @@ import 'package:m_login_sdk/src/internal/browser_flow.dart';
 import 'package:m_login_sdk/src/internal/pkce.dart';
 import 'package:m_login_sdk/src/internal/util.dart';
 
-import '../m_login_locale.dart';
-
 Future<MLoginResult> runAuthentication(
   MLogin mLogin, {
   String? loginAction,
@@ -99,7 +97,6 @@ String _makeRequestUri({
   if (locale != null) {
     queryParams['locale'] = locale.name;
   }
-  // later, once supported: 'locale' -> 'de_DE'
 
   if (!sso) {
     queryParams['prompt'] = 'login';
