@@ -26,6 +26,7 @@ Future<MLoginResult> runAuthentication(
     state: state,
     codeChallenge: codeChallenge,
     scopes: scopes,
+    locale: mLogin.locale,
   );
 
   MLoginLog.info('Starting Login!');
@@ -73,6 +74,7 @@ String _makeRequestUri({
   required String state,
   required PkceCodeChallenge codeChallenge,
   bool sso = true,
+  MLoginLocale? locale,
 }) {
   final host = '$baseHost/oauth2/authorize';
 
@@ -92,7 +94,9 @@ String _makeRequestUri({
     queryParams['login_action'] = loginAction!;
   }
 
-  // later, once supported: 'locale' -> 'de_DE'
+  if (locale != null) {
+    queryParams['locale'] = locale.name;
+  }
 
   if (!sso) {
     queryParams['prompt'] = 'login';

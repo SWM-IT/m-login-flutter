@@ -212,6 +212,8 @@ See the `example` directory for a minimal implementation that uses the sdk.
 The central class to access the M-Login SDK is the `MLogin` class in `m_login.dart`. All
 functionality is offered in there. For the parameters required to construct a `MLogin` object:
 Please check the documentation in the code.
+A locale (de or en) can be supplied, which will enforce the locale for all requests. If omitted,
+M-Login will detect the locale itself.
 
 #### Configs / Tiers
 

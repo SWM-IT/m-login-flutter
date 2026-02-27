@@ -24,6 +24,10 @@ Future<bool> openDataPage(
     queryParams['username'] = username!;
   }
 
+  if (mLogin.locale != null) {
+    queryParams['locale'] = mLogin.locale!.name;
+  }
+
   extraParams.forEach((key, value) {
     queryParams[key] = value;
   });
