@@ -1,3 +1,8 @@
+## [1.5.0] - (24th September 2026)
+
+* Version updates
+* Migrate Flutter to support standalone Material/Cupertino packages
+
 ## [1.4.0] - (25th June 2025)
 
 * Replace deprecated urls
