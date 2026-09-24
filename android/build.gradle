@@ -1,6 +1,5 @@
 plugins {
-    id "com.android.library"
-    id "kotlin-android"
+    id("com.android.library")
 }
 
 group 'de.swm.m_login_sdk'
@@ -16,15 +15,11 @@ rootProject.allprojects {
 android {
     namespace 'de.swm.m_login_sdk'
 
-    compileSdk 36
+    compileSdk 37
 
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = '1.8'
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
     }
 
     sourceSets {
@@ -33,6 +28,12 @@ android {
 
     defaultConfig {
         minSdkVersion 24
+    }
+}
+
+kotlin {
+    compilerOptions {
+        jvmTarget = org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17
     }
 }
 
